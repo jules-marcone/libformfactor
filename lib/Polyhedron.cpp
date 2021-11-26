@@ -19,6 +19,7 @@
 #include "Polyhedron.h"
 #include "PolyhedralComponents.h"
 #include "PolyhedralTopology.h"
+#include "Vec3.h"
 #include <iomanip>
 #include <iostream>
 #include <stdexcept> // need overlooked by g++ 5.4

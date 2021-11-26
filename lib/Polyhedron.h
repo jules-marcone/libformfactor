@@ -20,10 +20,14 @@
 #ifndef LIBFORMFACTOR_LIB_POLYHEDRON_H
 #define LIBFORMFACTOR_LIB_POLYHEDRON_H
 
-#include "Vec3.h"
-#include <vector>
+#include <complex>
 #include <memory>
+#include <vector>
 
+template<class T> class Vec3;
+using complex_t = std::complex<double>;
+using R3 = Vec3<double>;
+using C3 = Vec3<std::complex<double>>;
 class PolyhedralFace;
 class PolyhedralTopology;
 
