@@ -36,6 +36,8 @@ public:
     //! Constructs a vector from cartesian components.
     Vec3(const T x, const T y, const T z) : super{x, y, z} {}
 
+    Vec3(super v) : super{v} {}
+
     // -------------------------------------------------------------------------
     // Component access
     // -------------------------------------------------------------------------

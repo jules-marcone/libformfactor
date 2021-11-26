@@ -36,26 +36,26 @@ const int n_limit_series = 20;
 } // namespace
 
 Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,
-                       const std::vector<R3>& vertices)
+                       const std::vector<R3api>& vertices)
 {
     m_vertices.clear();
-    for (const R3& vertex : vertices)
-        m_vertices.push_back(vertex - R3{0, 0, z_bottom});
+    for (const auto& vertex : vertices)
+        m_vertices.push_back(R3{vertex} - R3{0, 0, z_bottom});
 
     try {
         m_z_bottom = z_bottom;
         m_sym_Ci = topology.symmetry_Ci;
 
         double diameter = 0;
-        for (size_t j = 0; j < vertices.size(); ++j)
-            for (size_t jj = j + 1; jj < vertices.size(); ++jj)
-                diameter = std::max(diameter, (vertices[j] - vertices[jj]).mag());
+        for (size_t j = 0; j < m_vertices.size(); ++j)
+            for (size_t jj = j + 1; jj < m_vertices.size(); ++jj)
+                diameter = std::max(diameter, (m_vertices[j] - m_vertices[jj]).mag());
 
         m_faces.clear();
         for (const PolygonalTopology& tf : topology.faces) {
             std::vector<R3> corners; // of one face
             for (int i : tf.vertexIndices)
-                corners.push_back(vertices[i]);
+                corners.push_back(m_vertices[i]);
             if (PolyhedralFace::diameter(corners) <= 1e-14 * diameter)
                 continue; // skip ridiculously small face
             m_faces.emplace_back(corners, tf.symmetry_S2);
@@ -117,15 +117,20 @@ double Polyhedron::radius() const
     return m_radius;
 }
 
-const std::vector<R3>& Polyhedron::vertices() const
+const std::vector<R3api> Polyhedron::vertices() const
 {
-    return m_vertices;
+    std::vector<R3api> ret;
+    ret.reserve(m_vertices.size());
+    for (const auto& vertex: m_vertices)
+        ret.emplace_back(R3api{vertex});
+    return ret;
 }
 
 //! Returns the form factor F(q) of this polyhedron, respecting the offset z_bottom.
 
-complex_t Polyhedron::evaluate_for_q(const C3& q) const
+complex_t Polyhedron::evaluate_for_q(const C3api& _q) const
 {
+    C3 q{_q};
     try {
         return exp_I(-m_z_bottom * q.z()) * evaluate_centered(q);
     } catch (std::logic_error& e) {
@@ -142,8 +147,9 @@ complex_t Polyhedron::evaluate_for_q(const C3& q) const
 
 //! Returns the form factor F(q) of this polyhedron, with origin at z=0.
 
-complex_t Polyhedron::evaluate_centered(const C3& q) const
+complex_t Polyhedron::evaluate_centered(const C3api& _q) const
 {
+    C3 q{_q};
     double q_red = m_radius * q.mag();
 #ifdef ALGORITHM_DIAGNOSTIC
     polyhedralDiagnosis.reset();
