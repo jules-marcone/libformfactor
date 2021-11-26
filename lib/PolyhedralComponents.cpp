@@ -6,22 +6,43 @@
 //! @brief     Implements classes PolyhedralEdge, PolyhedralFace
 //!
 //! @homepage  http://www.bornagainproject.org
-//! @license   GNU General Public License v3 or higher (see COPYING)
-//! @copyright Forschungszentrum Jülich GmbH 2018
-//! @authors   Scientific Computing Group at MLZ (see CITATION, AUTHORS)
+//! @license   GNU General Public License v3 or higher (see LICENSE)
+//! @copyright Forschungszentrum Jülich GmbH 2021
+//! @author    Joachim Wuttke, Scientific Computing Group at MLZ (see CITATION)
 //
 //  ************************************************************************************************
 
-#include "Sample/LibFF/PolyhedralComponents.h"
-#include "Base/Math/Functions.h"
-#include "Base/Math/Precomputed.h"
+#include "PolyhedralComponents.h"
+#include "Factorial.h"
 #include <iomanip>
-#include <stdexcept> // need overlooked by g++ 5.4
+#include <stdexcept>
 
 namespace {
+
 const double eps = 2e-16;
-constexpr auto ReciprocalFactorialArray = Math::generateReciprocalFactorialArray<171>();
+constexpr auto ReciprocalFactorialArray = ff_aux::generateReciprocalFactorialArray<171>();
+
+double sinc(double x) // Sin(x)/x
+{
+    if (x==0)
+        return 1;
+    return std::sin(x) / x;
+}
+
+complex_t sinc(const complex_t z) // Sin(x)/x
+{
+    // This is an exception from the rule that we must not test floating-point numbers for equality.
+    // For small non-zero arguments, sin(z) returns quite accurately z or z-z^3/6.
+    // There is no loss of precision in computing sin(z)/z.
+    // Therefore there is no need for an expensive test like abs(z)<eps.
+    if (z == complex_t(0., 0.))
+        return 1.0;
+    return std::sin(z) / z;
+}
+
 } // namespace
+
+
 
 #ifdef ALGORITHM_DIAGNOSTIC
 void PolyhedralDiagnosis::reset()
@@ -292,11 +313,11 @@ complex_t PolyhedralFace::edge_sum_ff(C3 q, C3 qpa, bool sym_Ci) const
         } else {
             vfac = -vfacsum; // to improve numeric accuracy: qcE_J = - sum_{j=0}^{J-1} qcE_j
         }
-        complex_t term = vfac * Math::sinc(qE) * Rfac;
+        complex_t term = vfac * sinc(qE) * Rfac;
         sum += term;
         //    std::cout << std::scientific << std::showpos << std::setprecision(16)
         //              << "    sum=" << sum << " term=" << term << " vf=" << vfac << " qE=" << qE
-        //              << " qR=" << qR << " sinc=" << Math::sinc(qE) << " Rfac=" << Rfac << "\n";
+        //              << " qR=" << qR << " sinc=" << sinc(qE) << " Rfac=" << Rfac << "\n";
     }
     return sum;
 }

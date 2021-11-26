@@ -6,9 +6,9 @@
 //! @brief     Implements class Polyhedron.
 //!
 //! @homepage  http://www.bornagainproject.org
-//! @license   GNU General Public License v3 or higher (see COPYING)
-//! @copyright Forschungszentrum Jülich GmbH 2018
-//! @authors   Scientific Computing Group at MLZ (see CITATION, AUTHORS)
+//! @license   GNU General Public License v3 or higher (see LICENSE)
+//! @copyright Forschungszentrum Jülich GmbH 2021
+//! @author    Joachim Wuttke, Scientific Computing Group at MLZ (see CITATION)
 //
 //  ************************************************************************************************
 
@@ -16,13 +16,15 @@
 //! by Joachim Wuttke, entitled
 //! "Numerically stable form factor of any polygon and polyhedron"
 
-#include "Sample/LibFF/Polyhedron.h"
-#include "Base/Math/Functions.h"
-#include "Sample/LibFF/PolyhedralTopology.h"
-#include <boost/format.hpp>
+#include "Polyhedron.h"
+#include "PolyhedralTopology.h"
 #include <iomanip>
 #include <iostream>
 #include <stdexcept> // need overlooked by g++ 5.4
+
+#ifdef ALGORITHM_DIAGNOSTIC_LEVEL2
+#include <boost/format.hpp>
+#endif
 
 namespace {
 const double eps = 2e-16;

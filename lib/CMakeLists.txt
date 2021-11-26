@@ -1,8 +1,8 @@
 set(lib formfactor)
 set(${lib}_LIBRARY ${lib} PARENT_SCOPE)
 
-set(src_files)# formfactor.c)
-set(inc_files)# formfactor.h)
+file(GLOB src_files *.cpp)
+file(GLOB inc_files *.h)
 
 add_library(${lib} ${src_files})
 

@@ -6,9 +6,9 @@
 //! @brief     Declares and partly implements template class BasicVector3D.
 //!
 //! @homepage  http://www.bornagainproject.org
-//! @license   GNU General Public License v3 or higher (see COPYING)
-//! @copyright Forschungszentrum Jülich GmbH 2018
-//! @authors   Scientific Computing Group at MLZ (see CITATION, AUTHORS)
+//! @license   GNU General Public License v3 or higher (see LICENSE)
+//! @copyright Forschungszentrum Jülich GmbH 2021
+//! @author    Joachim Wuttke, Scientific Computing Group at MLZ (see CITATION)
 //!
 //! Forked from CLHEP/Geometry by E. Chernyaev <Evgueni.Tcherniaev@cern.ch>,
 //! then reworked beyond recognition. Removed split of point and vector semantics.
