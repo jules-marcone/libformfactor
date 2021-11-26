@@ -1,8 +1,8 @@
 //  ************************************************************************************************
 //
-//  BornAgain: simulate and fit reflection and scattering
+//  libformfactor: efficient and accurate computation of scattering form factors
 //
-//! @file      Sample/LibFF/Polyhedron.h
+//! @file      lib/Polyhedron.h
 //! @brief     Defines class Polyhedron.
 //!
 //! @homepage  http://www.bornagainproject.org
@@ -17,8 +17,8 @@
 #endif
 
 #ifndef USER_API
-#ifndef BORNAGAIN_SAMPLE_LIBFF_POLYHEDRON_H
-#define BORNAGAIN_SAMPLE_LIBFF_POLYHEDRON_H
+#ifndef LIBFORMFACTOR_LIB_POLYHEDRON_H
+#define LIBFORMFACTOR_LIB_POLYHEDRON_H
 
 #include "Sample/LibFF/PolyhedralComponents.h"
 #include <memory>
@@ -52,5 +52,5 @@ private:
     std::vector<R3> m_vertices; //! for topZ, bottomZ computation only
 };
 
-#endif // BORNAGAIN_SAMPLE_LIBFF_POLYHEDRON_H
+#endif // LIBFORMFACTOR_LIB_POLYHEDRON_H
 #endif // USER_API

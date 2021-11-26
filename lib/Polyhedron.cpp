@@ -1,8 +1,8 @@
 //  ************************************************************************************************
 //
-//  BornAgain: simulate and fit reflection and scattering
+//  libformfactor: efficient and accurate computation of scattering form factors
 //
-//! @file      Sample/LibFF/Polyhedron.cpp
+//! @file      lib/Polyhedron.cpp
 //! @brief     Implements class Polyhedron.
 //!
 //! @homepage  http://www.bornagainproject.org

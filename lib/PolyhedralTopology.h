@@ -1,8 +1,8 @@
 //  ************************************************************************************************
 //
-//  BornAgain: simulate and fit reflection and scattering
+//  libformfactor: efficient and accurate computation of scattering form factors
 //
-//! @file      Sample/LibFF/PolyhedralTopology.h
+//! @file      lib/PolyhedralTopology.h
 //! @brief     Defines classes PolygonalTopology, PolyhedralTopology
 //!
 //! @homepage  http://www.bornagainproject.org
@@ -17,8 +17,8 @@
 #endif
 
 #ifndef USER_API
-#ifndef BORNAGAIN_SAMPLE_LIBFF_POLYHEDRALTOPOLOGY_H
-#define BORNAGAIN_SAMPLE_LIBFF_POLYHEDRALTOPOLOGY_H
+#ifndef LIBFORMFACTOR_LIB_POLYHEDRALTOPOLOGY_H
+#define LIBFORMFACTOR_LIB_POLYHEDRALTOPOLOGY_H
 
 #include <vector>
 
@@ -36,5 +36,5 @@ public:
     bool symmetry_Ci;
 };
 
-#endif // BORNAGAIN_SAMPLE_LIBFF_POLYHEDRALTOPOLOGY_H
+#endif // LIBFORMFACTOR_LIB_POLYHEDRALTOPOLOGY_H
 #endif // USER_API

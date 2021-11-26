@@ -1,8 +1,8 @@
 //  ************************************************************************************************
 //
-//  BornAgain: simulate and fit reflection and scattering
+//  libformfactor: efficient and accurate computation of scattering form factors
 //
-//! @file      Sample/LibFF/PolyhedralComponents.h
+//! @file      lib/PolyhedralComponents.h
 //! @brief     Defines classes PolyhedralEdge, PolyhedralFace
 //!
 //! @homepage  http://www.bornagainproject.org
@@ -17,10 +17,10 @@
 #endif
 
 #ifndef USER_API
-#ifndef BORNAGAIN_SAMPLE_LIBFF_POLYHEDRALCOMPONENTS_H
-#define BORNAGAIN_SAMPLE_LIBFF_POLYHEDRALCOMPONENTS_H
+#ifndef LIBFORMFACTOR_LIB_POLYHEDRALCOMPONENTS_H
+#define LIBFORMFACTOR_LIB_POLYHEDRALCOMPONENTS_H
 
-#include "Base/Vector/Vectors3D.h"
+#include "Vec3.h"
 #include <vector>
 
 #ifdef ALGORITHM_DIAGNOSTIC
@@ -93,5 +93,5 @@ private:
     complex_t expansion(complex_t fac_even, complex_t fac_odd, C3 qpa, double abslevel) const;
 };
 
-#endif // BORNAGAIN_SAMPLE_LIBFF_POLYHEDRALCOMPONENTS_H
+#endif // LIBFORMFACTOR_LIB_POLYHEDRALCOMPONENTS_H
 #endif // USER_API
