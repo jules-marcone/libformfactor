@@ -30,6 +30,7 @@ namespace {
 const double eps = 2e-16;
 const double q_limit_series = 1e-2;
 const int n_limit_series = 20;
+
 } // namespace
 
 Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,

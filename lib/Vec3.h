@@ -21,9 +21,9 @@
 
 //! Three-dimensional vector template, for use with integer, double, or complex components.
 
-template <class T> class Vec3 : public std::array<T,3> {
+template <class T> class Vec3 : public std::array<T, 3> {
 private:
-    using super = std::array<T,3>;
+    using super = std::array<T, 3>;
 
 public:
     // -------------------------------------------------------------------------
@@ -34,7 +34,7 @@ public:
     Vec3() : super{0., 0., 0.} {}
 
     //! Constructs a vector from cartesian components.
-    Vec3(const T x, const T y, const T z) : super{x,y,z} {}
+    Vec3(const T x, const T y, const T z) : super{x, y, z} {}
 
     // -------------------------------------------------------------------------
     // Component access
@@ -126,7 +126,6 @@ public:
 #ifndef SWIG
     template <class U> auto cross(const Vec3<U>& v) const;
 #endif // USER_API
-
 };
 
 // =============================================================================
@@ -164,16 +163,14 @@ template <class T> inline Vec3<T> operator-(const Vec3<T>& v)
 
 //! Addition of two vectors.
 //! @relates Vec3
-template <class T>
-inline Vec3<T> operator+(const Vec3<T>& a, const Vec3<T>& b)
+template <class T> inline Vec3<T> operator+(const Vec3<T>& a, const Vec3<T>& b)
 {
     return {a.x() + b.x(), a.y() + b.y(), a.z() + b.z()};
 }
 
 //! Subtraction of two vectors.
 //! @relates Vec3
-template <class T>
-inline Vec3<T> operator-(const Vec3<T>& a, const Vec3<T>& b)
+template <class T> inline Vec3<T> operator-(const Vec3<T>& a, const Vec3<T>& b)
 {
     return {a.x() - b.x(), a.y() - b.y(), a.z() - b.z()};
 }
@@ -209,9 +206,7 @@ template <class T, class U> inline Vec3<T> operator/(const Vec3<T>& v, U a)
 
 //! Returns dot product of (complex) vectors (antilinear in the first [=self] argument).
 #ifndef SWIG
-template <class T>
-template <class U>
-inline auto Vec3<T>::dot(const Vec3<U>& v) const
+template <class T> template <class U> inline auto Vec3<T>::dot(const Vec3<U>& v) const
 {
     Vec3<T> left_star = this->conj();
     return left_star.x() * v.x() + left_star.y() * v.y() + left_star.z() * v.z();
@@ -220,12 +215,10 @@ inline auto Vec3<T>::dot(const Vec3<U>& v) const
 
 //! Returns cross product of (complex) vectors.
 #ifndef SWIG
-template <class T>
-template <class U>
-inline auto Vec3<T>::cross(const Vec3<U>& v) const
+template <class T> template <class U> inline auto Vec3<T>::cross(const Vec3<U>& v) const
 {
-    return Vec3<decltype(this->x() * v.x())>(
-        y() * v.z() - v.y() * z(), z() * v.x() - v.z() * x(), x() * v.y() - v.x() * y());
+    return Vec3<decltype(this->x() * v.x())>(y() * v.z() - v.y() * z(), z() * v.x() - v.z() * x(),
+                                             x() * v.y() - v.x() * y());
 }
 #endif // USER_API
 

@@ -1,0 +1,15 @@
+BasedOnStyle: LLVM
+AccessModifierOffset: -4
+AllowAllConstructorInitializersOnNextLine: true
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: false
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeBraces: WebKit
+BreakConstructorInitializers : BeforeComma
+ColumnLimit: 100
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+IndentCaseLabels: false
+IndentWidth: 4
+MaxEmptyLinesToKeep: 2
+PointerAlignment: Left
+UseTab: Never

@@ -18,7 +18,6 @@
 #include <stdexcept>
 
 namespace {
-
 const double eps = 2e-16;
 constexpr auto ReciprocalFactorialArray = ff_aux::generateReciprocalFactorialArray<171>();
 
@@ -34,7 +33,6 @@ complex_t sinc(const complex_t z) // cardinal sine function, sin(x)/x
 }
 
 } // namespace
-
 
 
 #ifdef ALGORITHM_DIAGNOSTIC

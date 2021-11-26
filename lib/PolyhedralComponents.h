@@ -25,6 +25,7 @@
 
 #ifdef ALGORITHM_DIAGNOSTIC
 #include <string>
+
 struct PolyhedralDiagnosis {
     int algo;
     int order;

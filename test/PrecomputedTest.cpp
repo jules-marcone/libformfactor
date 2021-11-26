@@ -3,7 +3,6 @@
 #include <memory>
 
 namespace {
-
 constexpr auto ReciprocalFactorialArray = Math::generateReciprocalFactorialArray<171>();
 
 } // namespace

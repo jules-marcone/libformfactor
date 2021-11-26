@@ -24,9 +24,9 @@
 
 //! Three-dimensional vector template, for use with integer, double, or complex components.
 
-template <class T> class BasicVector3D : public std::array<T,3> {
+template <class T> class BasicVector3D : public std::array<T, 3> {
 private:
-    using super = std::array<T,3>;
+    using super = std::array<T, 3>;
 
 public:
     // -------------------------------------------------------------------------
@@ -37,7 +37,7 @@ public:
     BasicVector3D() : super{0., 0., 0.} {}
 
     //! Constructs a vector from cartesian components.
-    BasicVector3D(const T x, const T y, const T z) : super{x,y,z} {}
+    BasicVector3D(const T x, const T y, const T z) : super{x, y, z} {}
 
     // -------------------------------------------------------------------------
     // Component access
@@ -159,10 +159,7 @@ public:
     double angle(const BasicVector3D<T>& v) const;
 
     //! Returns projection of this onto other vector: (this*v)*v/|v|^2.
-    BasicVector3D<T> project(const BasicVector3D<T>& v) const
-    {
-        return dot(v) * v / v.mag2();
-    }
+    BasicVector3D<T> project(const BasicVector3D<T>& v) const { return dot(v) * v / v.mag2(); }
 
     // -------------------------------------------------------------------------
     // Rotations
