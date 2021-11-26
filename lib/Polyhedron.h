@@ -32,7 +32,6 @@ public:
     Polyhedron(const PolyhedralTopology& topology, double z_bottom,
                const std::vector<R3>& vertices);
     Polyhedron(const Polyhedron&) = delete;
-    ~Polyhedron();
 
     void assert_platonic() const;
     double volume() const;

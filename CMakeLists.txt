@@ -30,10 +30,10 @@ endif()
 
 ## Install settings.
 
-#set(destination ${CMAKE_INSTALL_PREFIX})
-#configure_file("formfactor.pc.in" "formfactor.pc" @ONLY)
-#install(FILES "${CMAKE_CURRENT_BINARY_DIR}/formfactor.pc"
-#    DESTINATION "${destination}/lib/pkgconfig/")
+set(destination ${CMAKE_INSTALL_PREFIX})
+configure_file("libformfactor.pc.in" "libformfactor.pc" @ONLY)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libformfactor.pc"
+    DESTINATION "${destination}/lib/pkgconfig/")
 
 include(CTest)
 

@@ -35,7 +35,6 @@ const int n_limit_series = 20;
 Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,
                        const std::vector<R3>& vertices)
 {
-
     m_vertices.clear();
     for (const R3& vertex : vertices)
         m_vertices.push_back(vertex - R3{0, 0, z_bottom});
@@ -89,8 +88,6 @@ Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,
     }
 }
 
-Polyhedron::~Polyhedron() = default;
-
 void Polyhedron::assert_platonic() const
 {
     // just one test; one could do much more ...
@@ -111,6 +108,7 @@ double Polyhedron::volume() const
 {
     return m_volume;
 }
+
 double Polyhedron::radius() const
 {
     return m_radius;
