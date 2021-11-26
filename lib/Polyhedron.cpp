@@ -17,6 +17,7 @@
 //! "Numerically stable form factor of any polygon and polyhedron"
 
 #include "Polyhedron.h"
+#include "PolyhedralComponents.h"
 #include "PolyhedralTopology.h"
 #include <iomanip>
 #include <iostream>

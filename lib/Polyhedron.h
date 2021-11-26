@@ -20,9 +20,11 @@
 #ifndef LIBFORMFACTOR_LIB_POLYHEDRON_H
 #define LIBFORMFACTOR_LIB_POLYHEDRON_H
 
-#include "PolyhedralComponents.h"
+#include "Vec3.h"
+#include <vector>
 #include <memory>
 
+class PolyhedralFace;
 class PolyhedralTopology;
 
 //! A polyhedron, implementation class for use in IFormFactorPolyhedron
