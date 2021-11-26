@@ -2,7 +2,7 @@ set(lib formfactor)
 set(${lib}_LIBRARY ${lib} PARENT_SCOPE)
 
 file(GLOB src_files *.cpp)
-file(GLOB inc_files *.h)
+set(api_files Polyhedron.h)
 
 add_library(${lib} ${src_files})
 
@@ -19,6 +19,6 @@ install(
     ARCHIVE DESTINATION ${destination}/lib
     COMPONENT Libraries)
 install(
-    FILES ${inc_files}
+    FILES ${api_files}
     DESTINATION ${destination}/include
     COMPONENT Headers)

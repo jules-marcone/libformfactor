@@ -7,6 +7,9 @@ project(libformfactor VERSION 0.1 LANGUAGES CXX)
 
 ## Options.
 
+if(NOT DEFINED BUILD_SHARED_LIBS)
+    option(BUILD_SHARED_LIBS "Build as shared library" ON)
+endif()
 option(PEDANTIC "Compile with pedantic warnings" ON)
 option(WERROR "Treat warnings as errors" OFF)
 

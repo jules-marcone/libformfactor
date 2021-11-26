@@ -22,14 +22,7 @@ namespace {
 const double eps = 2e-16;
 constexpr auto ReciprocalFactorialArray = ff_aux::generateReciprocalFactorialArray<171>();
 
-double sinc(double x) // Sin(x)/x
-{
-    if (x==0)
-        return 1;
-    return std::sin(x) / x;
-}
-
-complex_t sinc(const complex_t z) // Sin(x)/x
+complex_t sinc(const complex_t z) // cardinal sine function, sin(x)/x
 {
     // This is an exception from the rule that we must not test floating-point numbers for equality.
     // For small non-zero arguments, sin(z) returns quite accurately z or z-z^3/6.
