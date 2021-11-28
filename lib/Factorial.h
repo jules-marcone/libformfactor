@@ -23,7 +23,6 @@
 #include <array>
 #include <cstddef>
 #include <utility>
-#include <vector>
 
 namespace {
 template <size_t N> struct ReciprocalFactorial {
