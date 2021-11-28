@@ -19,9 +19,7 @@
 #include "Polyhedron.h"
 #include "PolyhedralComponents.h"
 #include "PolyhedralTopology.h"
-#include <iomanip>
-#include <iostream>
-#include <stdexcept> // need overlooked by g++ 5.4
+#include <stdexcept>
 
 #ifdef ALGORITHM_DIAGNOSTIC_LEVEL2
 #include <boost/format.hpp>
@@ -98,12 +96,8 @@ void Polyhedron::assert_platonic() const
         pyramidal_volume += Gk.pyramidalVolume();
     pyramidal_volume /= m_faces.size();
     for (const auto& Gk : m_faces)
-        if (std::abs(Gk.pyramidalVolume() - pyramidal_volume) > 160 * eps * pyramidal_volume) {
-            std::cerr << std::setprecision(16)
-                      << "Bug: pyr_volume(this face)=" << Gk.pyramidalVolume()
-                      << " vs pyr_volume(avge)=" << pyramidal_volume << "\n";
-            throw std::runtime_error("Deviant pyramidal volume in Platonic Polyhedron");
-        }
+        if (std::abs(Gk.pyramidalVolume() - pyramidal_volume) > 160 * eps * pyramidal_volume)
+            throw std::runtime_error("Polyhedron declared platonic is not sufficiently uniform");
 }
 
 double Polyhedron::volume() const
