@@ -137,9 +137,9 @@ PolyhedralFace::PolyhedralFace(const std::vector<R3>& V, bool _sym_S2) : sym_S2(
 {
     size_t NV = V.size();
     if (!NV)
-        throw std::logic_error("Face with no edges");
+        throw std::runtime_error("Invalid polyhedral face: no edges given");
     if (NV < 3)
-        throw std::logic_error("Face with less than three edges");
+        throw std::runtime_error("Invalid polyhedral face: less than three edges");
 
     // compute radius in 2d and 3d
     m_radius_2d = diameter(V) / 2;
@@ -168,7 +168,7 @@ PolyhedralFace::PolyhedralFace(const std::vector<R3>& V, bool _sym_S2) : sym_S2(
         size_t jj = (j + 1) % NE;
         R3 ee = edges[j].E().cross(edges[jj].E());
         if (ee.mag2() == 0) {
-            throw std::logic_error("Two adjacent edges are parallel");
+            throw std::runtime_error("Invalid polyhedral face: two adjacent edges are parallel");
         }
         m_normal += ee.unit();
     }
@@ -180,7 +180,7 @@ PolyhedralFace::PolyhedralFace(const std::vector<R3>& V, bool _sym_S2) : sym_S2(
     // assert that the vertices lay in a plane
     for (size_t j = 1; j < NV; ++j)
         if (std::abs(V[j].dot(m_normal) - m_rperp) > 1e-14 * m_radius_3d)
-            throw std::logic_error("Face is not planar");
+            throw std::runtime_error("Invalid polyhedral face: not planar");
     // compute m_area
     m_area = 0;
     for (size_t j = 0; j < NV; ++j) {
@@ -190,15 +190,15 @@ PolyhedralFace::PolyhedralFace(const std::vector<R3>& V, bool _sym_S2) : sym_S2(
     // only now deal with inversion symmetry
     if (sym_S2) {
         if (NE & 1)
-            throw std::logic_error("Odd #edges violates symmetry S2");
+            throw std::runtime_error("Invalid polyhedral face: odd #edges violates symmetry S2");
         NE /= 2;
         for (size_t j = 0; j < NE; ++j) {
             if (((edges[j].R() - m_rperp * m_normal) + (edges[j + NE].R() - m_rperp * m_normal))
                     .mag()
                 > 1e-12 * m_radius_2d)
-                throw std::logic_error("Edge centers violate symmetry S2");
+                throw std::runtime_error("Invalid polyhedral face: edge centers violate symmetry S2");
             if ((edges[j].E() + edges[j + NE].E()).mag() > 1e-12 * m_radius_2d)
-                throw std::logic_error("Edge vectors violate symmetry S2");
+                throw std::runtime_error("Invalid polyhedral face: edge vectors violate symmetry S2");
         }
         // keep only half of the egdes
         edges.erase(edges.begin() + NE, edges.end());
@@ -282,7 +282,7 @@ complex_t PolyhedralFace::expansion(complex_t fac_even, complex_t fac_odd, C3 qp
             return sum; // regular exit
         n_fac = mul_I(n_fac);
     }
-    throw std::runtime_error("Series f(q_pa) not converged");
+    throw std::runtime_error("Numeric error in polyhedral face: series f(q_pa) not converged");
 }
 
 //! Returns core contribution to analytic 2d form factor.
@@ -367,7 +367,8 @@ complex_t PolyhedralFace::ff_2D_direct(C3 qpa) const
 complex_t PolyhedralFace::ff_2D(C3 qpa) const
 {
     if (std::abs(qpa.dot(m_normal)) > eps * qpa.mag())
-        throw std::logic_error("ff_2D called with perpendicular q component");
+        throw std::runtime_error(
+            "Numeric error in polyhedral formfactor: ff_2D called with perpendicular q component");
     double qpa_red = m_radius_2d * qpa.mag();
     if (qpa_red == 0)
         return m_area;
@@ -381,9 +382,12 @@ complex_t PolyhedralFace::ff_2D(C3 qpa) const
 void PolyhedralFace::assert_Ci(const PolyhedralFace& other) const
 {
     if (std::abs(m_rperp - other.m_rperp) > 1e-15 * (m_rperp + other.m_rperp))
-        throw std::logic_error("Faces with different distance from origin violate symmetry Ci");
+        throw std::runtime_error(
+            "Invalid polyhedron: faces with different distance from origin violate symmetry Ci");
     if (std::abs(m_area - other.m_area) > 1e-15 * (m_area + other.m_area))
-        throw std::logic_error("Faces with different areas violate symmetry Ci");
+        throw std::runtime_error(
+            "Invalid polyhedron: faces with different areas violate symmetry Ci");
     if ((m_normal + other.m_normal).mag() > 1e-14)
-        throw std::logic_error("Faces do not have opposite orientation, violating symmetry Ci");
+        throw std::runtime_error(
+            "Invalid polyhedron: faces do not have opposite orientation, violating symmetry Ci");
 }

@@ -39,52 +39,41 @@ Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,
     for (const auto& vertex : vertices)
         m_vertices.push_back(R3{vertex} - R3{0, 0, z_bottom});
 
-    try {
-        m_z_bottom = z_bottom;
-        m_sym_Ci = topology.symmetry_Ci;
+    m_z_bottom = z_bottom;
+    m_sym_Ci = topology.symmetry_Ci;
 
-        double diameter = 0;
-        for (size_t j = 0; j < m_vertices.size(); ++j)
-            for (size_t jj = j + 1; jj < m_vertices.size(); ++jj)
-                diameter = std::max(diameter, (m_vertices[j] - m_vertices[jj]).mag());
+    double diameter = 0;
+    for (size_t j = 0; j < m_vertices.size(); ++j)
+        for (size_t jj = j + 1; jj < m_vertices.size(); ++jj)
+            diameter = std::max(diameter, (m_vertices[j] - m_vertices[jj]).mag());
 
-        m_faces.clear();
-        for (const PolygonalTopology& tf : topology.faces) {
-            std::vector<R3> corners; // of one face
-            for (int i : tf.vertexIndices)
-                corners.push_back(m_vertices[i]);
-            if (PolyhedralFace::diameter(corners) <= 1e-14 * diameter)
-                continue; // skip ridiculously small face
-            m_faces.emplace_back(corners, tf.symmetry_S2);
-        }
-        if (m_faces.size() < 4)
-            throw std::logic_error("Less than four non-vanishing faces");
+    m_faces.clear();
+    for (const PolygonalTopology& tf : topology.faces) {
+        std::vector<R3> corners; // of one face
+        for (int i : tf.vertexIndices)
+            corners.push_back(m_vertices[i]);
+        if (PolyhedralFace::diameter(corners) <= 1e-14 * diameter)
+            continue; // skip ridiculously small face
+        m_faces.emplace_back(corners, tf.symmetry_S2);
+    }
+    if (m_faces.size() < 4)
+        throw std::runtime_error("Invalid polyhedron: less than four non-vanishing faces");
 
-        m_radius = 0;
-        m_volume = 0;
-        for (const PolyhedralFace& Gk : m_faces) {
-            m_radius = std::max(m_radius, Gk.radius3d());
-            m_volume += Gk.pyramidalVolume();
-        }
-        if (m_sym_Ci) {
-            if (m_faces.size() & 1)
-                throw std::logic_error("Odd #faces violates symmetry Ci");
-            size_t N = m_faces.size() / 2;
-            // for this tests, m_faces must be in a specific order
-            for (size_t k = 0; k < N; ++k)
-                m_faces[k].assert_Ci(m_faces[2 * N - 1 - k]);
-            // keep only half of the faces
-            m_faces.erase(m_faces.begin() + N, m_faces.end());
-        }
-    } catch (std::invalid_argument& e) {
-        throw std::invalid_argument(std::string("Invalid parameterization of Polyhedron: ")
-                                    + e.what());
-    } catch (std::logic_error& e) {
-        throw std::logic_error(std::string("Bug in Polyhedron: ") + e.what()
-                               + " [please report to the maintainers]");
-    } catch (std::exception& e) {
-        throw std::runtime_error(std::string("Unexpected exception in Polyhedron: ") + e.what()
-                                 + " [please report to the maintainers]");
+    m_radius = 0;
+    m_volume = 0;
+    for (const PolyhedralFace& Gk : m_faces) {
+        m_radius = std::max(m_radius, Gk.radius3d());
+        m_volume += Gk.pyramidalVolume();
+    }
+    if (m_sym_Ci) {
+        if (m_faces.size() & 1)
+            throw std::runtime_error("Invalid polyhedron: odd #faces violates symmetry Ci");
+        size_t N = m_faces.size() / 2;
+        // for this tests, m_faces must be in a specific order
+        for (size_t k = 0; k < N; ++k)
+            m_faces[k].assert_Ci(m_faces[2 * N - 1 - k]);
+        // keep only half of the faces
+        m_faces.erase(m_faces.begin() + N, m_faces.end());
     }
 }
 
@@ -97,7 +86,8 @@ void Polyhedron::assert_platonic() const
     pyramidal_volume /= m_faces.size();
     for (const auto& Gk : m_faces)
         if (std::abs(Gk.pyramidalVolume() - pyramidal_volume) > 160 * eps * pyramidal_volume)
-            throw std::runtime_error("Polyhedron declared platonic is not sufficiently uniform");
+            throw std::runtime_error(
+                "Invalid Polyhedron: declared platonic but not sufficiently uniform");
 }
 
 double Polyhedron::volume() const
@@ -124,18 +114,7 @@ const std::vector<R3> Polyhedron::vertices() const
 complex_t Polyhedron::evaluate_for_q(const C3& _q) const
 {
     C3 q{_q};
-    try {
-        return exp_I(-m_z_bottom * q.z()) * evaluate_centered(q);
-    } catch (std::logic_error& e) {
-        throw std::logic_error(std::string("Bug in Polyhedron: ") + e.what()
-                               + " [please report to the maintainers]");
-    } catch (std::runtime_error& e) {
-        throw std::runtime_error(std::string("Numeric computation failed in Polyhedron: ")
-                                 + e.what() + " [please report to the maintainers]");
-    } catch (std::exception& e) {
-        throw std::runtime_error(std::string("Unexpected exception in Polyhedron: ") + e.what()
-                                 + " [please report to the maintainers]");
-    }
+    return exp_I(-m_z_bottom * q.z()) * evaluate_centered(q);
 }
 
 //! Returns the form factor F(q) of this polyhedron, with origin at z=0.
@@ -183,7 +162,7 @@ complex_t Polyhedron::evaluate_centered(const C3& _q) const
                 return m_volume + sum; // regular exit
             n_fac = m_sym_Ci ? -n_fac : mul_I(n_fac);
         }
-        throw std::runtime_error("Series F(q) not converged");
+        throw std::runtime_error("Numeric failure in polyhedron: series F(q) not converged");
     }
 
     // direct evaluation of analytic formula (coefficients may involve series)
