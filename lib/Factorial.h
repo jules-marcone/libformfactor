@@ -3,7 +3,7 @@
 //  libformfactor: efficient and accurate computation of scattering form factors
 //
 //! @file      lib/Factorial.h
-//! @brief     Defines vectors in R^3, C^3.
+//! @brief     Precomputes 1/n!
 //!
 //! @homepage  http://www.bornagainproject.org
 //! @license   GNU General Public License v3 or higher (see LICENSE)
