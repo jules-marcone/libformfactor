@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(PreventInSourceBuilds)
 
-project(libformfactor VERSION 0.1 LANGUAGES CXX)
+project(formfactor VERSION 0.1.0 LANGUAGES CXX)
 
 ## Options.
 
@@ -36,8 +36,7 @@ message(STATUS "LibHeinz: found=${LibHeinz_FOUND}, include_dirs=${LibHeinz_INCLU
 
 ## Install settings.
 
-configure_file(libformfactor.pc.in libformfactor.pc @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libformfactor.pc DESTINATION lib/pkgconfig/)
+# install(EXPORT FormFactorTargets FILE FormFactorTargets.cmake DESTINATION cmake)
 
 include(CTest)
 

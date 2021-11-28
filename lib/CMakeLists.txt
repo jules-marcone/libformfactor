@@ -14,15 +14,15 @@ set_target_properties(
 
 install(
     TARGETS ${lib}
+#    EXPORT FormFactorTargets
     LIBRARY DESTINATION lib
     RUNTIME DESTINATION lib
     ARCHIVE DESTINATION lib
-    COMPONENT Libraries
-    EXPORT FormFactorTargets)
-install(
-    EXPORT FormFactorTargets
-    FILE FormFactorTargets.cmake
-    DESTINATION cmake)
+    COMPONENT Libraries)
+# install(
+#     EXPORT FormFactorTargets
+#     FILE FormFactorTargets.cmake
+#     DESTINATION cmake)
 install(
     FILES ${api_files}
     DESTINATION include
