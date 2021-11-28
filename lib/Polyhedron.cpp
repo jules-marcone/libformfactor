@@ -19,7 +19,6 @@
 #include "Polyhedron.h"
 #include "PolyhedralComponents.h"
 #include "PolyhedralTopology.h"
-#include "Vec3.h"
 #include <iomanip>
 #include <iostream>
 #include <stdexcept> // need overlooked by g++ 5.4
@@ -36,7 +35,7 @@ const int n_limit_series = 20;
 } // namespace
 
 Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,
-                       const std::vector<R3api>& vertices)
+                       const std::vector<R3>& vertices)
 {
     m_vertices.clear();
     for (const auto& vertex : vertices)
@@ -117,18 +116,18 @@ double Polyhedron::radius() const
     return m_radius;
 }
 
-const std::vector<R3api> Polyhedron::vertices() const
+const std::vector<R3> Polyhedron::vertices() const
 {
-    std::vector<R3api> ret;
+    std::vector<R3> ret;
     ret.reserve(m_vertices.size());
     for (const auto& vertex: m_vertices)
-        ret.emplace_back(R3api{vertex});
+        ret.emplace_back(R3{vertex});
     return ret;
 }
 
 //! Returns the form factor F(q) of this polyhedron, respecting the offset z_bottom.
 
-complex_t Polyhedron::evaluate_for_q(const C3api& _q) const
+complex_t Polyhedron::evaluate_for_q(const C3& _q) const
 {
     C3 q{_q};
     try {
@@ -147,7 +146,7 @@ complex_t Polyhedron::evaluate_for_q(const C3api& _q) const
 
 //! Returns the form factor F(q) of this polyhedron, with origin at z=0.
 
-complex_t Polyhedron::evaluate_centered(const C3api& _q) const
+complex_t Polyhedron::evaluate_centered(const C3& _q) const
 {
     C3 q{_q};
     double q_red = m_radius * q.mag();

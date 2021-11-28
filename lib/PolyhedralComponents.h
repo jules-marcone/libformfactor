@@ -20,7 +20,8 @@
 #ifndef LIBFORMFACTOR_LIB_POLYHEDRALCOMPONENTS_H
 #define LIBFORMFACTOR_LIB_POLYHEDRALCOMPONENTS_H
 
-#include "Vec3.h"
+#include <heinz/Complex.h>
+#include <heinz/Vectors3D.h>
 #include <vector>
 
 #ifdef ALGORITHM_DIAGNOSTIC

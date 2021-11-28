@@ -28,6 +28,13 @@ if(WERROR)
     add_compile_options(-Werror)
 endif()
 
+## Dependences.
+
+find_package(LibHeinz REQUIRED)
+message(STATUS "LibHeinz: found=${LibHeinz_FOUND}, include_dirs=${LibHeinz_INCLUDE_DIR}, "
+    "version=${LibHeinz_VERSION}")
+
+
 ## Install settings.
 
 set(destination ${CMAKE_INSTALL_PREFIX})
