@@ -23,7 +23,6 @@ windows:
     - cmake --build . --config Release
     - Get-Location
     - dir
-    # debug-only: - dumpbin.exe /HEADERS lib\liblmfit.lib
     - ctest -C Release --output-on-failure
     - cmake --install .
 
