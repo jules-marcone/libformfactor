@@ -23,6 +23,7 @@
 #include <array>
 #include <memory>
 #include <vector>
+
 #include <heinz/Complex.h>
 #include <heinz/Vectors3D.h>
 

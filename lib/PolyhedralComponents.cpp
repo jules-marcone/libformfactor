@@ -18,6 +18,7 @@
 #include <stdexcept>
 
 namespace {
+
 const double eps = 2e-16;
 constexpr auto ReciprocalFactorialArray = ff_aux::generateReciprocalFactorialArray<171>();
 
@@ -196,9 +197,11 @@ PolyhedralFace::PolyhedralFace(const std::vector<R3>& V, bool _sym_S2) : sym_S2(
             if (((edges[j].R() - m_rperp * m_normal) + (edges[j + NE].R() - m_rperp * m_normal))
                     .mag()
                 > 1e-12 * m_radius_2d)
-                throw std::runtime_error("Invalid polyhedral face: edge centers violate symmetry S2");
+                throw std::runtime_error(
+                    "Invalid polyhedral face: edge centers violate symmetry S2");
             if ((edges[j].E() + edges[j + NE].E()).mag() > 1e-12 * m_radius_2d)
-                throw std::runtime_error("Invalid polyhedral face: edge vectors violate symmetry S2");
+                throw std::runtime_error(
+                    "Invalid polyhedral face: edge vectors violate symmetry S2");
         }
         // keep only half of the egdes
         edges.erase(edges.begin() + NE, edges.end());

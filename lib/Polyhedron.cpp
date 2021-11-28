@@ -26,11 +26,13 @@
 #endif
 
 namespace {
+
 const double eps = 2e-16;
 const double q_limit_series = 1e-2;
 const int n_limit_series = 20;
 
 } // namespace
+
 
 Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,
                        const std::vector<R3>& vertices)
@@ -104,7 +106,7 @@ const std::vector<R3> Polyhedron::vertices() const
 {
     std::vector<R3> ret;
     ret.reserve(m_vertices.size());
-    for (const auto& vertex: m_vertices)
+    for (const auto& vertex : m_vertices)
         ret.emplace_back(R3{vertex});
     return ret;
 }
