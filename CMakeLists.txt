@@ -34,13 +34,10 @@ find_package(LibHeinz REQUIRED)
 message(STATUS "LibHeinz: found=${LibHeinz_FOUND}, include_dirs=${LibHeinz_INCLUDE_DIR}, "
     "version=${LibHeinz_VERSION}")
 
-
 ## Install settings.
 
-set(destination ${CMAKE_INSTALL_PREFIX})
-configure_file("libformfactor.pc.in" "libformfactor.pc" @ONLY)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/libformfactor.pc"
-    DESTINATION "${destination}/lib/pkgconfig/")
+configure_file(libformfactor.pc.in libformfactor.pc @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libformfactor.pc DESTINATION lib/pkgconfig/)
 
 include(CTest)
 

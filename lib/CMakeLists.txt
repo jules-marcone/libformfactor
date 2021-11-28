@@ -14,11 +14,11 @@ set_target_properties(
 
 install(
     TARGETS ${lib}
-    LIBRARY DESTINATION ${destination}/lib
-    RUNTIME DESTINATION ${destination}/lib
-    ARCHIVE DESTINATION ${destination}/lib
+    LIBRARY DESTINATION lib
+    RUNTIME DESTINATION lib
+    ARCHIVE DESTINATION lib
     COMPONENT Libraries)
 install(
     FILES ${api_files}
-    DESTINATION ${destination}/include
+    DESTINATION include
     COMPONENT Headers)
