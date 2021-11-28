@@ -38,7 +38,20 @@ message(STATUS "LibHeinz: found=${LibHeinz_FOUND}, include_dirs=${LibHeinz_INCLU
 
 # install(EXPORT FormFactorTargets FILE FormFactorTargets.cmake DESTINATION cmake)
 
+## Subdirectories.
+
 include(CTest)
 
 add_subdirectory(lib)
 add_subdirectory(test)
+
+## CPack settings.
+
+include(InstallRequiredSystemLibraries)
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+set(CPACK_PACKAGE_VERSION_MAJOR "${LibHeinz_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${LibHeinz_VERSION_MINOR}")
+set(CPACK_SOURCE_GENERATOR "TGZ")
+include(CPack)
+include(CMakePackageConfigHelpers)
+export(PACKAGE LibHeinz)
