@@ -1,0 +1,50 @@
+stages:
+  - build
+
+mac:
+  tags:
+  - MacOS
+  stage: build
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+    - ctest --output-on-failure
+    - make install
+
+windows:
+  tags:
+  - Windows
+  stage: build
+  script:
+    - cmake -G "Visual Studio 16 2019" -A x64 -T host=x64 -DCMAKE_INSTALL_PREFIX=C:/opt/x64 -S . -B build
+    - cd build
+    - cmake --build . --config Release
+    - Get-Location
+    - dir
+    # debug-only: - dumpbin.exe /HEADERS lib\liblmfit.lib
+    - ctest -C Release --output-on-failure
+    - cmake --install .
+
+native_Debian_clang:
+  tags: &native
+  - Debian
+  before_script: &debian_clang
+    - export CC=clang; export CXX=clang++
+    - cmake --version
+    - clang --version
+  stage: build
+  script: &native_scr
+    - pwd && ls
+    - mkdir build
+    - cd build
+    - cmake -DWERROR=ON -DPEDANTIC=ON ..
+    - make
+    - ctest --output-on-failure
+    - make install
+    - cpack --config CPackConfig.cmake -G TGZ
+  artifacts:
+    paths:
+    - build/*gz
+    expire_in: 10 days
