@@ -17,7 +17,12 @@ install(
     LIBRARY DESTINATION lib
     RUNTIME DESTINATION lib
     ARCHIVE DESTINATION lib
-    COMPONENT Libraries)
+    COMPONENT Libraries
+    EXPORT FormFactorTargets)
+install(
+    EXPORT FormFactorTargets
+    FILE FormFactorTargets.cmake
+    DESTINATION cmake)
 install(
     FILES ${api_files}
     DESTINATION include
