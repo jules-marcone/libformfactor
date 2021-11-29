@@ -5,6 +5,7 @@ file(GLOB src_files *.cpp)
 set(api_files Polyhedron.h PolyhedralTopology.h PolyhedralComponents.h)
 
 add_library(${lib} ${src_files})
+
 target_include_directories(${lib}
     PRIVATE
     ${LibHeinz_INCLUDE_DIR}
@@ -19,15 +20,11 @@ set_target_properties(
 
 install(
     TARGETS ${lib}
-#    EXPORT FormFactorTargets
     LIBRARY DESTINATION lib
     RUNTIME DESTINATION lib
     ARCHIVE DESTINATION lib
     COMPONENT Libraries)
-# install(
-#     EXPORT FormFactorTargets
-#     FILE FormFactorTargets.cmake
-#     DESTINATION cmake)
+
 install(
     FILES ${api_files}
     DESTINATION include/ff
