@@ -1,4 +1,4 @@
-#include "lib/PolyhedralComponents.h"
+#include "ff/PolyhedralComponents.h"
 #include "catch.hpp"
 #include <cstdio>
 

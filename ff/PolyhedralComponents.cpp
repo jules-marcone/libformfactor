@@ -69,7 +69,7 @@ PolyhedralEdge::PolyhedralEdge(R3 Vlow, R3 Vhig) : m_E((Vhig - Vlow) / 2), m_R((
 {
     if (m_E.mag2() == 0)
         throw std::invalid_argument("At least one edge has zero length");
-};
+}
 
 //! Returns sum_l=0^M/2 u^2l v^(M-2l) / (2l+1)!(M-2l)! - vperp^M/M!
 
