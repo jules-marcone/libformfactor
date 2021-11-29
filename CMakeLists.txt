@@ -16,7 +16,7 @@ option(WERROR "Treat warnings as errors" OFF)
 
 set(CMAKE_CXX_STANDARD 17)
 if(WIN32)
-    set(WINDOWS_EXPORT_ALL_SYMBOLS ON)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
     message(STATUS "compiling for Windows")
 else()
     option(PEDANTIC "Compile with pedantic warnings" ON)
