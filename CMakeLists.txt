@@ -59,11 +59,20 @@ include(CPack)
 include(CMakePackageConfigHelpers)
 export(PACKAGE formfactor)
 
+install(EXPORT formfactorTargets
+  FILE formfactorTargets.cmake
+  DESTINATION lib/cmake/formfactor
+)
+
+export(EXPORT formfactorTargets
+  FILE "${CMAKE_CURRENT_BINARY_DIR}/formfactorTargets.cmake"
+)
+
 ## Config files.
 
 configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
     "${CMAKE_CURRENT_BINARY_DIR}/formfactorConfig.cmake"
-    INSTALL_DESTINATION "lib/cmake/example"
+    INSTALL_DESTINATION "lib/cmake"
     NO_SET_AND_CHECK_MACRO
     NO_CHECK_REQUIRED_COMPONENTS_MACRO
     )

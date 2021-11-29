@@ -7,10 +7,11 @@ set(api_files Polyhedron.h PolyhedralTopology.h PolyhedralComponents.h)
 add_library(${lib} ${src_files})
 
 target_include_directories(${lib}
-    PRIVATE
-    ${LibHeinz_INCLUDE_DIR}
-    PUBLIC
-    ${CMAKE_SOURCE_DIR})
+                           INTERFACE
+                            $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
+                            $<INSTALL_INTERFACE:include>
+                           )
+target_include_directories(${lib} PRIVATE ${LibHeinz_INCLUDE_DIR})
 
 set_target_properties(
     ${lib} PROPERTIES
@@ -20,6 +21,7 @@ set_target_properties(
 
 install(
     TARGETS ${lib}
+    EXPORT formfactorTargets
     LIBRARY DESTINATION lib
     RUNTIME DESTINATION lib
     ARCHIVE DESTINATION lib
