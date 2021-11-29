@@ -5,6 +5,11 @@ file(GLOB src_files *.cpp)
 set(api_files Polyhedron.h)
 
 add_library(${lib} ${src_files})
+target_include_directories(${lib}
+    PRIVATE
+    ${LibHeinz_INCLUDE_DIR}
+    PUBLIC
+    ${CMAKE_SOURCE_DIR})
 
 set_target_properties(
     ${lib} PROPERTIES
@@ -25,5 +30,5 @@ install(
 #     DESTINATION cmake)
 install(
     FILES ${api_files}
-    DESTINATION include
+    DESTINATION include/ff
     COMPONENT Headers)

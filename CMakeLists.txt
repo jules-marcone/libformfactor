@@ -42,7 +42,7 @@ message(STATUS "LibHeinz: found=${LibHeinz_FOUND}, include_dirs=${LibHeinz_INCLU
 
 include(CTest)
 
-add_subdirectory(lib)
+add_subdirectory(ff)
 add_subdirectory(test)
 
 ## CPack settings.

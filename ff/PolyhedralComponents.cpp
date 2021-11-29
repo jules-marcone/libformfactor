@@ -12,8 +12,9 @@
 //
 //  ************************************************************************************************
 
-#include "PolyhedralComponents.h"
-#include "Factorial.h"
+#include "ff/PolyhedralComponents.h"
+#include "ff/Factorial.h"
+
 #include <iomanip>
 #include <stdexcept>
 
