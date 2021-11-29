@@ -49,9 +49,29 @@ add_subdirectory(test)
 
 include(InstallRequiredSystemLibraries)
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-set(CPACK_PACKAGE_VERSION_MAJOR "${LibHeinz_VERSION_MAJOR}")
-set(CPACK_PACKAGE_VERSION_MINOR "${LibHeinz_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_MAJOR "${formfactor_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${formfactor_VERSION_MINOR}")
 set(CPACK_SOURCE_GENERATOR "TGZ")
 include(CPack)
 include(CMakePackageConfigHelpers)
-export(PACKAGE LibHeinz)
+export(PACKAGE formfactor)
+
+## Config files.
+
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
+    "${CMAKE_CURRENT_BINARY_DIR}/formfactorConfig.cmake"
+    INSTALL_DESTINATION "lib/cmake/example"
+    NO_SET_AND_CHECK_MACRO
+    NO_CHECK_REQUIRED_COMPONENTS_MACRO
+    )
+
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/formfactorConfigVersion.cmake"
+    VERSION "${formfactor_VERSION_MAJOR}.${formfactor_VERSION_MINOR}"
+    COMPATIBILITY AnyNewerVersion
+    )
+
+install(FILES
+    ${PROJECT_BINARY_DIR}/formfactorConfig.cmake
+    ${PROJECT_BINARY_DIR}/formfactorConfigVersion.cmake
+    DESTINATION cmake COMPONENT dev)
