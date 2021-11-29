@@ -34,7 +34,7 @@ const int n_limit_series = 20;
 } // namespace
 
 
-Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,
+ff::Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,
                        const std::vector<R3>& vertices)
 {
     m_vertices.clear();
@@ -79,7 +79,7 @@ Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,
     }
 }
 
-void Polyhedron::assert_platonic() const
+void ff::Polyhedron::assert_platonic() const
 {
     // just one test; one could do much more ...
     double pyramidal_volume = 0;
@@ -92,17 +92,17 @@ void Polyhedron::assert_platonic() const
                 "Invalid Polyhedron: declared platonic but not sufficiently uniform");
 }
 
-double Polyhedron::volume() const
+double ff::Polyhedron::volume() const
 {
     return m_volume;
 }
 
-double Polyhedron::radius() const
+double ff::Polyhedron::radius() const
 {
     return m_radius;
 }
 
-const std::vector<R3> Polyhedron::vertices() const
+const std::vector<R3> ff::Polyhedron::vertices() const
 {
     std::vector<R3> ret;
     ret.reserve(m_vertices.size());
@@ -113,7 +113,7 @@ const std::vector<R3> Polyhedron::vertices() const
 
 //! Returns the form factor F(q) of this polyhedron, respecting the offset z_bottom.
 
-complex_t Polyhedron::evaluate_for_q(const C3& _q) const
+complex_t ff::Polyhedron::evaluate_for_q(const C3& _q) const
 {
     C3 q{_q};
     return exp_I(-m_z_bottom * q.z()) * evaluate_centered(q);
@@ -121,7 +121,7 @@ complex_t Polyhedron::evaluate_for_q(const C3& _q) const
 
 //! Returns the form factor F(q) of this polyhedron, with origin at z=0.
 
-complex_t Polyhedron::evaluate_centered(const C3& _q) const
+complex_t ff::Polyhedron::evaluate_centered(const C3& _q) const
 {
     C3 q{_q};
     double q_red = m_radius * q.mag();

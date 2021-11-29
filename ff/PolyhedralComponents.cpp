@@ -38,24 +38,24 @@ complex_t sinc(const complex_t z) // cardinal sine function, sin(x)/x
 
 
 #ifdef ALGORITHM_DIAGNOSTIC
-void PolyhedralDiagnosis::reset()
+void ff::PolyhedralDiagnosis::reset()
 {
     order = 0;
     algo = 0;
     msg.clear();
 };
-std::string PolyhedralDiagnosis::message() const
+std::string ff::PolyhedralDiagnosis::message() const
 {
     std::string ret = "algo=" + std::to_string(algo) + ", order=" + std::to_string(order);
     if (!msg.empty())
         ret += ", msg:\n" + msg;
     return ret;
 }
-bool PolyhedralDiagnosis::operator==(const PolyhedralDiagnosis& other) const
+bool ff::PolyhedralDiagnosis::operator==(const PolyhedralDiagnosis& other) const
 {
     return order == other.order && algo == other.algo;
 }
-bool PolyhedralDiagnosis::operator!=(const PolyhedralDiagnosis& other) const
+bool ff::PolyhedralDiagnosis::operator!=(const PolyhedralDiagnosis& other) const
 {
     return !(*this == other);
 }
@@ -65,7 +65,7 @@ bool PolyhedralDiagnosis::operator!=(const PolyhedralDiagnosis& other) const
 //  PolyhedralEdge implementation
 //  ************************************************************************************************
 
-PolyhedralEdge::PolyhedralEdge(R3 Vlow, R3 Vhig) : m_E((Vhig - Vlow) / 2), m_R((Vhig + Vlow) / 2)
+ff::PolyhedralEdge::PolyhedralEdge(R3 Vlow, R3 Vhig) : m_E((Vhig - Vlow) / 2), m_R((Vhig + Vlow) / 2)
 {
     if (m_E.mag2() == 0)
         throw std::invalid_argument("At least one edge has zero length");
@@ -73,7 +73,7 @@ PolyhedralEdge::PolyhedralEdge(R3 Vlow, R3 Vhig) : m_E((Vhig - Vlow) / 2), m_R((
 
 //! Returns sum_l=0^M/2 u^2l v^(M-2l) / (2l+1)!(M-2l)! - vperp^M/M!
 
-complex_t PolyhedralEdge::contrib(int M, C3 qpa, complex_t qrperp) const
+complex_t ff::PolyhedralEdge::contrib(int M, C3 qpa, complex_t qrperp) const
 {
     complex_t u = qE(qpa);
     complex_t v2 = m_R.dot(qpa);
@@ -116,12 +116,12 @@ complex_t PolyhedralEdge::contrib(int M, C3 qpa, complex_t qrperp) const
 //  PolyhedralFace implementation
 //  ************************************************************************************************
 
-double PolyhedralFace::qpa_limit_series = 1e-2;
-int PolyhedralFace::n_limit_series = 20;
+double ff::PolyhedralFace::qpa_limit_series = 1e-2;
+int ff::PolyhedralFace::n_limit_series = 20;
 
 //! Static method, returns diameter of circle that contains all vertices.
 
-double PolyhedralFace::diameter(const std::vector<R3>& V)
+double ff::PolyhedralFace::diameter(const std::vector<R3>& V)
 {
     double diameterFace = 0;
     for (size_t j = 0; j < V.size(); ++j)
@@ -135,7 +135,7 @@ double PolyhedralFace::diameter(const std::vector<R3>& V)
 //! @param V oriented vertex list
 //! @param _sym_S2 true if face has a perpedicular two-fold symmetry axis
 
-PolyhedralFace::PolyhedralFace(const std::vector<R3>& V, bool _sym_S2) : sym_S2(_sym_S2)
+ff::PolyhedralFace::PolyhedralFace(const std::vector<R3>& V, bool _sym_S2) : sym_S2(_sym_S2)
 {
     size_t NV = V.size();
     if (!NV)
@@ -211,7 +211,7 @@ PolyhedralFace::PolyhedralFace(const std::vector<R3>& V, bool _sym_S2) : sym_S2(
 
 //! Sets qperp and qpa according to argument q and to this polygon's normal.
 
-void PolyhedralFace::decompose_q(C3 q, complex_t& qperp, C3& qpa) const
+void ff::PolyhedralFace::decompose_q(C3 q, complex_t& qperp, C3& qpa) const
 {
     qperp = m_normal.dot(q);
     qpa = q - qperp * m_normal;
@@ -223,7 +223,7 @@ void PolyhedralFace::decompose_q(C3 q, complex_t& qperp, C3& qpa) const
 
 //! Returns core contribution to f_n
 
-complex_t PolyhedralFace::ff_n_core(int m, C3 qpa, complex_t qperp) const
+complex_t ff::PolyhedralFace::ff_n_core(int m, C3 qpa, complex_t qperp) const
 {
     const C3 prevec = 2. * m_normal.cross(qpa); // complex conjugation not here but in .dot
     complex_t ret = 0;
@@ -242,7 +242,7 @@ complex_t PolyhedralFace::ff_n_core(int m, C3 qpa, complex_t qperp) const
 
 //! Returns contribution qn*f_n [of order q^(n+1)] from this face to the polyhedral form factor.
 
-complex_t PolyhedralFace::ff_n(int n, C3 q) const
+complex_t ff::PolyhedralFace::ff_n(int n, C3 q) const
 {
     complex_t qn = q.dot(m_normal); // conj(q)*normal (dot is antilinear in 'this' argument)
     if (std::abs(qn) < eps * q.mag())
@@ -262,7 +262,7 @@ complex_t PolyhedralFace::ff_n(int n, C3 q) const
 
 //! Returns sum of n>=1 terms of qpa expansion of 2d form factor
 
-complex_t PolyhedralFace::expansion(complex_t fac_even, complex_t fac_odd, C3 qpa,
+complex_t ff::PolyhedralFace::expansion(complex_t fac_even, complex_t fac_odd, C3 qpa,
                                     double abslevel) const
 {
 #ifdef ALGORITHM_DIAGNOSTIC
@@ -291,13 +291,13 @@ complex_t PolyhedralFace::expansion(complex_t fac_even, complex_t fac_odd, C3 qp
 
 //! Returns core contribution to analytic 2d form factor.
 
-complex_t PolyhedralFace::edge_sum_ff(C3 q, C3 qpa, bool sym_Ci) const
+complex_t ff::PolyhedralFace::edge_sum_ff(C3 q, C3 qpa, bool sym_Ci) const
 {
     C3 prevec = m_normal.cross(qpa); // complex conjugation will take place in .dot
     complex_t sum = 0;
     complex_t vfacsum = 0;
     for (size_t i = 0; i < edges.size(); ++i) {
-        const PolyhedralEdge& e = edges[i];
+        const ff::PolyhedralEdge& e = edges[i];
         complex_t qE = e.qE(qpa);
         complex_t qR = e.qR(qpa);
         complex_t Rfac = sym_S2 ? sin(qR) : (sym_Ci ? cos(e.qR(q)) : exp_I(qR));
@@ -319,7 +319,7 @@ complex_t PolyhedralFace::edge_sum_ff(C3 q, C3 qpa, bool sym_Ci) const
 
 //! Returns the contribution ff(q) of this face to the polyhedral form factor.
 
-complex_t PolyhedralFace::ff(C3 q, bool sym_Ci) const
+complex_t ff::PolyhedralFace::ff(C3 q, bool sym_Ci) const
 {
     complex_t qperp;
     C3 qpa;
@@ -354,21 +354,21 @@ complex_t PolyhedralFace::ff(C3 q, bool sym_Ci) const
 
 //! Two-dimensional form factor, for use in prism, from power series.
 
-complex_t PolyhedralFace::ff_2D_expanded(C3 qpa) const
+complex_t ff::PolyhedralFace::ff_2D_expanded(C3 qpa) const
 {
     return m_area + expansion(1., 1., qpa, std::abs(m_area));
 }
 
 //! Two-dimensional form factor, for use in prism, from sum over edge form factors.
 
-complex_t PolyhedralFace::ff_2D_direct(C3 qpa) const
+complex_t ff::PolyhedralFace::ff_2D_direct(C3 qpa) const
 {
     return (sym_S2 ? 4. : 2. / I) * edge_sum_ff(qpa, qpa, false) / qpa.mag2();
 }
 
 //! Returns the two-dimensional form factor of this face, for use in a prism.
 
-complex_t PolyhedralFace::ff_2D(C3 qpa) const
+complex_t ff::PolyhedralFace::ff_2D(C3 qpa) const
 {
     if (std::abs(qpa.dot(m_normal)) > eps * qpa.mag())
         throw std::runtime_error(
@@ -383,7 +383,7 @@ complex_t PolyhedralFace::ff_2D(C3 qpa) const
 
 //! Throws if deviation from inversion symmetry is detected. Does not check vertices.
 
-void PolyhedralFace::assert_Ci(const PolyhedralFace& other) const
+void ff::PolyhedralFace::assert_Ci(const PolyhedralFace& other) const
 {
     if (std::abs(m_rperp - other.m_rperp) > 1e-15 * (m_rperp + other.m_rperp))
         throw std::runtime_error(

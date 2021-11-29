@@ -22,6 +22,8 @@
 
 #include <vector>
 
+namespace ff {
+
 //! For internal use in PolyhedralFace.
 class PolygonalTopology {
 public:
@@ -35,6 +37,8 @@ public:
     std::vector<PolygonalTopology> faces;
     bool symmetry_Ci;
 };
+
+} // namespace ff
 
 #endif // LIBFORMFACTOR_LIB_POLYHEDRALTOPOLOGY_H
 #endif // USER_API

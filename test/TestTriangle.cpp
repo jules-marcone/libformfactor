@@ -17,7 +17,7 @@ TEST_CASE("FF:Triangle", "")
     const double ah = a / sqrt(3);
     const std::vector<R3> V{{-ac, as, 0.}, {-ac, -as, 0.}, {ah, 0., 0.}};
 
-    const PolyhedralFace T(V, false);
+    const ff::PolyhedralFace T(V, false);
     CHECK(std::abs(sqrt(3) / 4-T.area()) < 1e-15);
 
     int failures = 0;

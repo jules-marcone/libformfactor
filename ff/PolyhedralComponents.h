@@ -24,6 +24,8 @@
 #include <heinz/Vectors3D.h>
 #include <vector>
 
+namespace ff {
+
 #ifdef ALGORITHM_DIAGNOSTIC
 #include <string>
 
@@ -94,6 +96,8 @@ private:
     complex_t edge_sum_ff(C3 q, C3 qpa, bool sym_Ci) const;
     complex_t expansion(complex_t fac_even, complex_t fac_odd, C3 qpa, double abslevel) const;
 };
+
+} // namespace ff
 
 #endif // LIBFORMFACTOR_LIB_POLYHEDRALCOMPONENTS_H
 #endif // USER_API

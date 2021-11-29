@@ -27,6 +27,8 @@
 #include <heinz/Complex.h>
 #include <heinz/Vectors3D.h>
 
+namespace ff {
+
 class PolyhedralFace;
 class PolyhedralTopology;
 
@@ -55,6 +57,8 @@ private:
     double m_volume;
     std::vector<R3> m_vertices; //! for topZ, bottomZ computation only
 };
+
+} // namespace ff
 
 #endif // LIBFORMFACTOR_LIB_POLYHEDRON_H
 #endif // USER_API
