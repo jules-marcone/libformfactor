@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(PreventInSourceBuilds)
 
-project(formfactor VERSION 0.1.0 LANGUAGES CXX)
+project(formfactor VERSION 0.1.1 LANGUAGES CXX)
 
 ## Options.
 
