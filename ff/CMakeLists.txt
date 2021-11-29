@@ -7,10 +7,10 @@ set(api_files Polyhedron.h PolyhedralTopology.h PolyhedralComponents.h)
 add_library(${lib} ${src_files})
 
 target_include_directories(${lib}
-                           INTERFACE
-                            $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
-                            $<INSTALL_INTERFACE:include>
-                           )
+    PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:include>
+    )
 target_include_directories(${lib} PRIVATE ${LibHeinz_INCLUDE_DIR})
 
 set_target_properties(
