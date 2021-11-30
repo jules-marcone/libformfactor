@@ -52,7 +52,6 @@ set(CPACK_PACKAGE_VERSION_MAJOR "${formfactor_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${formfactor_VERSION_MINOR}")
 set(CPACK_SOURCE_GENERATOR "TGZ")
 include(CPack)
-# export(PACKAGE formfactor)
 
 ## Install settings.
 
@@ -80,7 +79,7 @@ write_basic_package_version_file(
 install(FILES
     ${PROJECT_BINARY_DIR}/formfactorConfig.cmake
     ${PROJECT_BINARY_DIR}/formfactorConfigVersion.cmake
-    DESTINATION cmake COMPONENT dev)
+    DESTINATION cmake)
 
 ## Generate export targets.
 

@@ -20,5 +20,5 @@ TEST_CASE("FactorialTest", "")
     for( size_t k=4; k<precomputed.factorial.size(); ++k )
         EXPECT_NEAR(precomputed.factorial[k], tgamma(k+1.), 12*eps*tgamma(k+1.) );
     */
-    CHECK(ReciprocalFactorialArray[150] == Approx(1.75027620692601519e-263).epsilon(1e-14));
+    CHECK(ReciprocalFactorialArray[150] == Approx(1.75027620692601519e-263).epsilon(1e-15));
 }

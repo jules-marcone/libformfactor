@@ -24,10 +24,8 @@ install(
     EXPORT formfactorTargets
     LIBRARY DESTINATION lib
     RUNTIME DESTINATION lib
-    ARCHIVE DESTINATION lib
-    COMPONENT Libraries)
+    ARCHIVE DESTINATION lib)
 
 install(
     FILES ${api_files}
-    DESTINATION include/ff
-    COMPONENT Headers)
+    DESTINATION include/ff)
