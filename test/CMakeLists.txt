@@ -1,4 +1,4 @@
-file(GLOB test_sources "Test*.cpp")
+file(GLOB test_sources "*Test.cpp")
 
 if (WIN32)
     add_compile_options(/wd4068 /wd4623 /wd4625 /wd4626 /wd4710 /wd4711 /wd4820 )
