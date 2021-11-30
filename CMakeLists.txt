@@ -57,24 +57,21 @@ include(CPack)
 
 install(EXPORT formfactorTargets
   FILE formfactorTargets.cmake
-  DESTINATION cmake
-)
+  DESTINATION cmake)
 
 ## Config files.
 
 include(CMakePackageConfigHelpers)
 configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
     "${CMAKE_CURRENT_BINARY_DIR}/formfactorConfig.cmake"
-    INSTALL_DESTINATION "lib/cmake"
+    INSTALL_DESTINATION cmake
     NO_SET_AND_CHECK_MACRO
-    NO_CHECK_REQUIRED_COMPONENTS_MACRO
-    )
+    NO_CHECK_REQUIRED_COMPONENTS_MACRO    )
 
 write_basic_package_version_file(
     "${CMAKE_CURRENT_BINARY_DIR}/formfactorConfigVersion.cmake"
     VERSION "${formfactor_VERSION_MAJOR}.${formfactor_VERSION_MINOR}"
-    COMPATIBILITY AnyNewerVersion
-    )
+    COMPATIBILITY AnyNewerVersion    )
 
 install(FILES
     ${PROJECT_BINARY_DIR}/formfactorConfig.cmake
@@ -84,5 +81,4 @@ install(FILES
 ## Generate export targets.
 
 export(EXPORT formfactorTargets
-  FILE ${CMAKE_CURRENT_BINARY_DIR}/formfactorTargets.cmake
-)
+  FILE ${CMAKE_CURRENT_BINARY_DIR}/formfactorTargets.cmake)
