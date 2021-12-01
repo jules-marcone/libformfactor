@@ -1,5 +1,3 @@
-# Config file for the LibHeinz package
-
 @PACKAGE_INIT@
 
 set(formfactor_INCLUDE_DIR @CMAKE_INSTALL_PREFIX@/include)
