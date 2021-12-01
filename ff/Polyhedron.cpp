@@ -35,25 +35,25 @@ const int n_limit_series = 20;
 
 
 ff::Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,
-                       const std::vector<R3>& vertices)
+                           const std::vector<R3>& vertices)
 {
     m_vertices.clear();
-    for (const auto& vertex : vertices)
-        m_vertices.push_back(R3{vertex} - R3{0, 0, z_bottom});
+    for (const R3& vertex : vertices)
+        m_vertices.push_back(vertex - R3{0, 0, z_bottom});
 
     m_z_bottom = z_bottom;
     m_sym_Ci = topology.symmetry_Ci;
 
     double diameter = 0;
-    for (size_t j = 0; j < m_vertices.size(); ++j)
-        for (size_t jj = j + 1; jj < m_vertices.size(); ++jj)
-            diameter = std::max(diameter, (m_vertices[j] - m_vertices[jj]).mag());
+    for (size_t j = 0; j < vertices.size(); ++j)
+        for (size_t jj = j + 1; jj < vertices.size(); ++jj)
+            diameter = std::max(diameter, (vertices[j] - vertices[jj]).mag());
 
     m_faces.clear();
     for (const PolygonalTopology& tf : topology.faces) {
         std::vector<R3> corners; // of one face
         for (int i : tf.vertexIndices)
-            corners.push_back(m_vertices[i]);
+            corners.push_back(vertices[i]);
         if (PolyhedralFace::diameter(corners) <= 1e-14 * diameter)
             continue; // skip ridiculously small face
         m_faces.emplace_back(corners, tf.symmetry_S2);
