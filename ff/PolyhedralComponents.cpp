@@ -2,7 +2,7 @@
 //
 //  libformfactor: efficient and accurate computation of scattering form factors
 //
-//! @file      lib/PolyhedralComponents.cpp
+//! @file      ff/PolyhedralComponents.cpp
 //! @brief     Implements classes PolyhedralEdge, PolyhedralFace
 //!
 //! @homepage  http://www.bornagainproject.org
@@ -46,10 +46,10 @@ void ff::PolyhedralDiagnosis::reset()
 };
 std::string ff::PolyhedralDiagnosis::message() const
 {
-    std::string ret = "algo=" + std::to_string(algo) + ", order=" + std::to_string(order);
+    std::string result = "algo=" + std::to_string(algo) + ", order=" + std::to_string(order);
     if (!msg.empty())
-        ret += ", msg:\n" + msg;
-    return ret;
+        result += ", msg:\n" + msg;
+    return result;
 }
 bool ff::PolyhedralDiagnosis::operator==(const PolyhedralDiagnosis& other) const
 {
@@ -65,7 +65,8 @@ bool ff::PolyhedralDiagnosis::operator!=(const PolyhedralDiagnosis& other) const
 //  PolyhedralEdge implementation
 //  ************************************************************************************************
 
-ff::PolyhedralEdge::PolyhedralEdge(R3 Vlow, R3 Vhig) : m_E((Vhig - Vlow) / 2), m_R((Vhig + Vlow) / 2)
+ff::PolyhedralEdge::PolyhedralEdge(R3 Vlow, R3 Vhig)
+    : m_E((Vhig - Vlow) / 2), m_R((Vhig + Vlow) / 2)
 {
     if (m_E.mag2() == 0)
         throw std::invalid_argument("At least one edge has zero length");
@@ -86,30 +87,30 @@ complex_t ff::PolyhedralEdge::contrib(int M, C3 qpa, complex_t qrperp) const
             return 0.;
         return ReciprocalFactorialArray[M] * (pow(u, M) / (M + 1.) - pow(v1, M));
     }
-    complex_t ret = 0;
+    complex_t result = 0;
     // the l=0 term, minus (qperp.R)^M, which cancels under the sum over E*contrib()
-    if (v1 == 0.) {
-        ret = ReciprocalFactorialArray[M] * pow(v2, M);
-    } else if (v2 == 0.) {
-        ; // leave ret=0
+    if (v1 == 0.)
+        result = ReciprocalFactorialArray[M] * pow(v2, M);
+    else if (v2 == 0.) {
+        ; // leave result=0
     } else {
         // binomial expansion
         for (int mm = 1; mm <= M; ++mm) {
             complex_t term = ReciprocalFactorialArray[mm] * ReciprocalFactorialArray[M - mm]
                              * pow(v2, mm) * pow(v1, M - mm);
-            ret += term;
-            // std::cout << "contrib mm=" << mm << " t=" << term << " s=" << ret << "\n";
+            result += term;
+            // std::cout << "contrib mm=" << mm << " t=" << term << " s=" << result << "\n";
         }
     }
     if (u == 0.)
-        return ret;
+        return result;
     for (int l = 1; l <= M / 2; ++l) {
         complex_t term = ReciprocalFactorialArray[M - 2 * l] * ReciprocalFactorialArray[2 * l + 1]
                          * pow(u, 2 * l) * pow(v, M - 2 * l);
-        ret += term;
-        // std::cout << "contrib l=" << l << " t=" << term << " s=" << ret << "\n";
+        result += term;
+        // std::cout << "contrib l=" << l << " t=" << term << " s=" << result << "\n";
     }
-    return ret;
+    return result;
 }
 
 //  ************************************************************************************************
@@ -169,9 +170,8 @@ ff::PolyhedralFace::PolyhedralFace(const std::vector<R3>& V, bool _sym_S2) : sym
     for (size_t j = 0; j < NE; ++j) {
         size_t jj = (j + 1) % NE;
         R3 ee = edges[j].E().cross(edges[jj].E());
-        if (ee.mag2() == 0) {
+        if (ee.mag2() == 0)
             throw std::runtime_error("Invalid polyhedral face: two adjacent edges are parallel");
-        }
         m_normal += ee.unit();
     }
     m_normal /= NE;
@@ -226,18 +226,18 @@ void ff::PolyhedralFace::decompose_q(C3 q, complex_t& qperp, C3& qpa) const
 complex_t ff::PolyhedralFace::ff_n_core(int m, C3 qpa, complex_t qperp) const
 {
     const C3 prevec = 2. * m_normal.cross(qpa); // complex conjugation not here but in .dot
-    complex_t ret = 0;
+    complex_t result = 0;
     const complex_t qrperp = qperp * m_rperp;
     for (size_t i = 0; i < edges.size(); ++i) {
         const PolyhedralEdge& e = edges[i];
         const complex_t vfac = prevec.dot(e.E());
         const complex_t tmp = e.contrib(m + 1, qpa, qrperp);
-        ret += vfac * tmp;
+        result += vfac * tmp;
         //     std::cout << std::scientific << std::showpos << std::setprecision(16)
         //               << "DBX ff_n_core " << m << " " << vfac << " " << tmp
-        //               << " term=" << vfac * tmp << " sum=" << ret << "\n";
+        //               << " term=" << vfac * tmp << " sum=" << result << "\n";
     }
-    return ret;
+    return result;
 }
 
 //! Returns contribution qn*f_n [of order q^(n+1)] from this face to the polyhedral form factor.
@@ -263,7 +263,7 @@ complex_t ff::PolyhedralFace::ff_n(int n, C3 q) const
 //! Returns sum of n>=1 terms of qpa expansion of 2d form factor
 
 complex_t ff::PolyhedralFace::expansion(complex_t fac_even, complex_t fac_odd, C3 qpa,
-                                    double abslevel) const
+                                        double abslevel) const
 {
 #ifdef ALGORITHM_DIAGNOSTIC
     polyhedralDiagnosis.algo += 1;

@@ -2,7 +2,7 @@
 //
 //  libformfactor: efficient and accurate computation of scattering form factors
 //
-//! @file      lib/Polyhedron.h
+//! @file      ff/Polyhedron.h
 //! @brief     Defines class Polyhedron.
 //!
 //! @homepage  http://www.bornagainproject.org
@@ -17,8 +17,8 @@
 #endif
 
 #ifndef USER_API
-#ifndef LIBFORMFACTOR_LIB_POLYHEDRON_H
-#define LIBFORMFACTOR_LIB_POLYHEDRON_H
+#ifndef FORMFACTOR_FF_POLYHEDRON_H
+#define FORMFACTOR_FF_POLYHEDRON_H
 
 #include <array>
 #include <memory>
@@ -44,11 +44,12 @@ public:
     double volume() const;
     double radius() const;
 
-    const std::vector<R3> vertices() const; //! needed for topZ, bottomZ computation
-    complex_t evaluate_for_q(const C3& q) const;
-    complex_t evaluate_centered(const C3& q) const;
+    std::vector<R3> vertices() const; //! needed for topZ, bottomZ computation
+    complex_t formfactor_at_bottom(const C3& q) const;
 
 private:
+    complex_t formfactor_at_center(const C3& q) const;
+
     double m_z_bottom;
     bool m_sym_Ci; //!< if true, then faces obtainable by inversion are not provided
 
@@ -60,5 +61,5 @@ private:
 
 } // namespace ff
 
-#endif // LIBFORMFACTOR_LIB_POLYHEDRON_H
+#endif // FORMFACTOR_FF_POLYHEDRON_H
 #endif // USER_API

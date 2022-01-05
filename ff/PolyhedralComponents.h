@@ -2,7 +2,7 @@
 //
 //  libformfactor: efficient and accurate computation of scattering form factors
 //
-//! @file      lib/PolyhedralComponents.h
+//! @file      ff/PolyhedralComponents.h
 //! @brief     Defines classes PolyhedralEdge, PolyhedralFace
 //!
 //! @homepage  http://www.bornagainproject.org
@@ -17,8 +17,8 @@
 #endif
 
 #ifndef USER_API
-#ifndef LIBFORMFACTOR_LIB_POLYHEDRALCOMPONENTS_H
-#define LIBFORMFACTOR_LIB_POLYHEDRALCOMPONENTS_H
+#ifndef FORMFACTOR_FF_POLYHEDRALCOMPONENTS_H
+#define FORMFACTOR_FF_POLYHEDRALCOMPONENTS_H
 
 #include <heinz/Complex.h>
 #include <heinz/Vectors3D.h>
@@ -99,5 +99,5 @@ private:
 
 } // namespace ff
 
-#endif // LIBFORMFACTOR_LIB_POLYHEDRALCOMPONENTS_H
+#endif // FORMFACTOR_FF_POLYHEDRALCOMPONENTS_H
 #endif // USER_API

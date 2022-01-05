@@ -2,7 +2,7 @@
 //
 //  libformfactor: efficient and accurate computation of scattering form factors
 //
-//! @file      lib/Polyhedron.cpp
+//! @file      ff/Polyhedron.cpp
 //! @brief     Implements class Polyhedron.
 //!
 //! @homepage  http://www.bornagainproject.org
@@ -102,28 +102,26 @@ double ff::Polyhedron::radius() const
     return m_radius;
 }
 
-const std::vector<R3> ff::Polyhedron::vertices() const
+std::vector<R3> ff::Polyhedron::vertices() const
 {
-    std::vector<R3> ret;
-    ret.reserve(m_vertices.size());
+    std::vector<R3> result;
+    result.reserve(m_vertices.size());
     for (const auto& vertex : m_vertices)
-        ret.emplace_back(R3{vertex});
-    return ret;
+        result.emplace_back(R3{vertex});
+    return result;
 }
 
 //! Returns the form factor F(q) of this polyhedron, respecting the offset z_bottom.
 
-complex_t ff::Polyhedron::evaluate_for_q(const C3& _q) const
+complex_t ff::Polyhedron::formfactor_at_bottom(const C3& q) const
 {
-    C3 q{_q};
-    return exp_I(-m_z_bottom * q.z()) * evaluate_centered(q);
+    return exp_I(-m_z_bottom * q.z()) * formfactor_at_center(q);
 }
 
 //! Returns the form factor F(q) of this polyhedron, with origin at z=0.
 
-complex_t ff::Polyhedron::evaluate_centered(const C3& _q) const
+complex_t ff::Polyhedron::formfactor_at_center(const C3& q) const
 {
-    C3 q{_q};
     double q_red = m_radius * q.mag();
 #ifdef ALGORITHM_DIAGNOSTIC
     polyhedralDiagnosis.reset();
