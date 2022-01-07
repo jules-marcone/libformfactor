@@ -34,16 +34,11 @@ const int n_limit_series = 20;
 } // namespace
 
 
-ff::Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,
+ff::Polyhedron::Polyhedron(const PolyhedralTopology& topology,
                            const std::vector<R3>& vertices)
+    : m_sym_Ci(topology.symmetry_Ci)
+    , m_vertices(vertices)
 {
-    m_vertices.clear();
-    for (const R3& vertex : vertices)
-        m_vertices.push_back(vertex - R3{0, 0, z_bottom});
-
-    m_z_bottom = z_bottom;
-    m_sym_Ci = topology.symmetry_Ci;
-
     double diameter = 0;
     for (size_t j = 0; j < vertices.size(); ++j)
         for (size_t jj = j + 1; jj < vertices.size(); ++jj)
