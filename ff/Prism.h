@@ -34,7 +34,6 @@ public:
     double area() const;
     const std::vector<R3>& vertices() const; //! needed for topZ, bottomZ computation
     complex_t formfactor_at_center(const C3& q) const;
-    complex_t formfactor_at_bottom(const C3& q) const;
 
 private:
     std::unique_ptr<ff::PolyhedralFace> m_base;

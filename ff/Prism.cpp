@@ -83,8 +83,3 @@ complex_t ff::Prism::formfactor_at_center(const C3& q) const
                                  + " [please report to the maintainers]");
     }
 }
-
-complex_t ff::Prism::formfactor_at_bottom(const C3& q) const
-{
-    return formfactor_at_center(q) * exp_I(m_height / 2 * q.z());
-}
