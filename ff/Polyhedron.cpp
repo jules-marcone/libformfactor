@@ -37,7 +37,6 @@ const int n_limit_series = 20;
 ff::Polyhedron::Polyhedron(const PolyhedralTopology& topology,
                            const std::vector<R3>& vertices)
     : m_sym_Ci(topology.symmetry_Ci)
-    , m_vertices(vertices)
 {
     double diameter = 0;
     for (size_t j = 0; j < vertices.size(); ++j)
@@ -95,15 +94,6 @@ double ff::Polyhedron::volume() const
 double ff::Polyhedron::radius() const
 {
     return m_radius;
-}
-
-std::vector<R3> ff::Polyhedron::vertices() const
-{
-    std::vector<R3> result;
-    result.reserve(m_vertices.size());
-    for (const auto& vertex : m_vertices)
-        result.emplace_back(R3{vertex});
-    return result;
 }
 
 //! Returns the form factor F(q) of this polyhedron, with origin at z=0.

@@ -44,7 +44,6 @@ public:
     double volume() const;
     double radius() const;
 
-    std::vector<R3> vertices() const; //! needed for topZ, bottomZ computation
     complex_t formfactor_at_center(const C3& q) const;
     complex_t formfactor_at_bottom(const C3& q) const;
 
@@ -54,7 +53,6 @@ private:
     std::vector<PolyhedralFace> m_faces;
     double m_radius;
     double m_volume;
-    std::vector<R3> m_vertices; //! for topZ, bottomZ computation only
 };
 
 } // namespace ff
