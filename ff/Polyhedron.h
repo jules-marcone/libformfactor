@@ -45,10 +45,10 @@ public:
     double radius() const;
 
     std::vector<R3> vertices() const; //! needed for topZ, bottomZ computation
+    complex_t formfactor_at_center(const C3& q) const;
     complex_t formfactor_at_bottom(const C3& q) const;
 
 private:
-    complex_t formfactor_at_center(const C3& q) const;
 
     double m_z_bottom;
     bool m_sym_Ci; //!< if true, then faces obtainable by inversion are not provided
