@@ -34,11 +34,6 @@ complex_t sinc(const complex_t z) // cardinal sine function, sin(x)/x
 ff::Prism::Prism(bool symmetry_Ci, double height, const std::vector<R3>& vertices)
 {
     m_height = height;
-    m_vertices.clear();
-    for (const R3& vertex : vertices) {
-        m_vertices.push_back(vertex);
-        m_vertices.push_back(vertex + R3{0, 0, m_height});
-    }
 
     try {
         m_base = std::make_unique<ff::PolyhedralFace>(vertices, symmetry_Ci);
@@ -56,11 +51,6 @@ ff::Prism::Prism(bool symmetry_Ci, double height, const std::vector<R3>& vertice
 double ff::Prism::area() const
 {
     return m_base->area();
-}
-
-const std::vector<R3>& ff::Prism::vertices() const
-{
-    return m_vertices;
 }
 
 complex_t ff::Prism::formfactor(const C3& q) const
