@@ -2,7 +2,7 @@
 //
 //  libformfactor: efficient and accurate computation of scattering form factors
 //
-//! @file      lib/Factorial.h
+//! @file      ff/Factorial.h
 //! @brief     Precomputes 1/n!
 //!
 //! @homepage  http://www.bornagainproject.org
@@ -17,8 +17,8 @@
 #endif
 
 #ifndef USER_API
-#ifndef LIBFORMFACTOR_LIB_FACTORIAL_H
-#define LIBFORMFACTOR_LIB_FACTORIAL_H
+#ifndef FORMFACTOR_FF_FACTORIAL_H
+#define FORMFACTOR_FF_FACTORIAL_H
 
 #include <array>
 #include <cstddef>
@@ -55,5 +55,5 @@ constexpr std::array<double, N> generateReciprocalFactorialArray()
 
 } // namespace ff_aux
 
-#endif // LIBFORMFACTOR_LIB_FACTORIAL_H
+#endif // FORMFACTOR_FF_FACTORIAL_H
 #endif // USER_API

@@ -2,7 +2,7 @@
 //
 //  libformfactor: efficient and accurate computation of scattering form factors
 //
-//! @file      lib/PolyhedralTopology.h
+//! @file      ff/PolyhedralTopology.h
 //! @brief     Defines classes PolygonalTopology, PolyhedralTopology
 //!
 //! @homepage  http://www.bornagainproject.org
@@ -17,8 +17,8 @@
 #endif
 
 #ifndef USER_API
-#ifndef LIBFORMFACTOR_LIB_POLYHEDRALTOPOLOGY_H
-#define LIBFORMFACTOR_LIB_POLYHEDRALTOPOLOGY_H
+#ifndef FORMFACTOR_FF_POLYHEDRALTOPOLOGY_H
+#define FORMFACTOR_FF_POLYHEDRALTOPOLOGY_H
 
 #include <vector>
 
@@ -40,5 +40,5 @@ public:
 
 } // namespace ff
 
-#endif // LIBFORMFACTOR_LIB_POLYHEDRALTOPOLOGY_H
+#endif // FORMFACTOR_FF_POLYHEDRALTOPOLOGY_H
 #endif // USER_API
