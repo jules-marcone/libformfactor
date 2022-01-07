@@ -44,8 +44,7 @@ public:
     double volume() const;
     double radius() const;
 
-    complex_t formfactor_at_center(const C3& q) const;
-    complex_t formfactor_at_bottom(const C3& q) const;
+    complex_t formfactor(const C3& q) const;
 
 private:
     bool m_sym_Ci; //!< if true, then faces obtainable by inversion are not provided

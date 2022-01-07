@@ -98,7 +98,7 @@ double ff::Polyhedron::radius() const
 
 //! Returns the form factor F(q) of this polyhedron, with origin at z=0.
 
-complex_t ff::Polyhedron::formfactor_at_center(const C3& q) const
+complex_t ff::Polyhedron::formfactor(const C3& q) const
 {
     double q_red = m_radius * q.mag();
 #ifdef ALGORITHM_DIAGNOSTIC

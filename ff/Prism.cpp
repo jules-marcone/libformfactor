@@ -63,7 +63,7 @@ const std::vector<R3>& ff::Prism::vertices() const
     return m_vertices;
 }
 
-complex_t ff::Prism::formfactor_at_center(const C3& q) const
+complex_t ff::Prism::formfactor(const C3& q) const
 {
     try {
 #ifdef ALGORITHM_DIAGNOSTIC
