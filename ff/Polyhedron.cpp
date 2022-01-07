@@ -111,13 +111,6 @@ std::vector<R3> ff::Polyhedron::vertices() const
     return result;
 }
 
-//! Returns the form factor F(q) of this polyhedron, respecting the offset z_bottom.
-
-complex_t ff::Polyhedron::formfactor_at_bottom(const C3& q) const
-{
-    return exp_I(-m_z_bottom * q.z()) * formfactor_at_center(q);
-}
-
 //! Returns the form factor F(q) of this polyhedron, with origin at z=0.
 
 complex_t ff::Polyhedron::formfactor_at_center(const C3& q) const
