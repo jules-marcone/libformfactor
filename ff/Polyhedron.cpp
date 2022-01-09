@@ -34,16 +34,10 @@ const int n_limit_series = 20;
 } // namespace
 
 
-ff::Polyhedron::Polyhedron(const PolyhedralTopology& topology, double z_bottom,
+ff::Polyhedron::Polyhedron(const PolyhedralTopology& topology,
                            const std::vector<R3>& vertices)
+    : m_sym_Ci(topology.symmetry_Ci)
 {
-    m_vertices.clear();
-    for (const R3& vertex : vertices)
-        m_vertices.push_back(vertex - R3{0, 0, z_bottom});
-
-    m_z_bottom = z_bottom;
-    m_sym_Ci = topology.symmetry_Ci;
-
     double diameter = 0;
     for (size_t j = 0; j < vertices.size(); ++j)
         for (size_t jj = j + 1; jj < vertices.size(); ++jj)
@@ -102,25 +96,9 @@ double ff::Polyhedron::radius() const
     return m_radius;
 }
 
-std::vector<R3> ff::Polyhedron::vertices() const
-{
-    std::vector<R3> result;
-    result.reserve(m_vertices.size());
-    for (const auto& vertex : m_vertices)
-        result.emplace_back(R3{vertex});
-    return result;
-}
-
-//! Returns the form factor F(q) of this polyhedron, respecting the offset z_bottom.
-
-complex_t ff::Polyhedron::formfactor_at_bottom(const C3& q) const
-{
-    return exp_I(-m_z_bottom * q.z()) * formfactor_at_center(q);
-}
-
 //! Returns the form factor F(q) of this polyhedron, with origin at z=0.
 
-complex_t ff::Polyhedron::formfactor_at_center(const C3& q) const
+complex_t ff::Polyhedron::formfactor(const C3& q) const
 {
     double q_red = m_radius * q.mag();
 #ifdef ALGORITHM_DIAGNOSTIC

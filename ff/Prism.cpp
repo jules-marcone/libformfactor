@@ -34,11 +34,6 @@ complex_t sinc(const complex_t z) // cardinal sine function, sin(x)/x
 ff::Prism::Prism(bool symmetry_Ci, double height, const std::vector<R3>& vertices)
 {
     m_height = height;
-    m_vertices.clear();
-    for (const R3& vertex : vertices) {
-        m_vertices.push_back(vertex);
-        m_vertices.push_back(vertex + R3{0, 0, m_height});
-    }
 
     try {
         m_base = std::make_unique<ff::PolyhedralFace>(vertices, symmetry_Ci);
@@ -58,12 +53,7 @@ double ff::Prism::area() const
     return m_base->area();
 }
 
-const std::vector<R3>& ff::Prism::vertices() const
-{
-    return m_vertices;
-}
-
-complex_t ff::Prism::formfactor_at_center(const C3& q) const
+complex_t ff::Prism::formfactor(const C3& q) const
 {
     try {
 #ifdef ALGORITHM_DIAGNOSTIC
@@ -82,9 +72,4 @@ complex_t ff::Prism::formfactor_at_center(const C3& q) const
         throw std::runtime_error(std::string("Unexpected exception in Prism: ") + e.what()
                                  + " [please report to the maintainers]");
     }
-}
-
-complex_t ff::Prism::formfactor_at_bottom(const C3& q) const
-{
-    return formfactor_at_center(q) * exp_I(m_height / 2 * q.z());
 }

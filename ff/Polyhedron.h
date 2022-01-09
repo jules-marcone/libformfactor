@@ -36,7 +36,7 @@ class PolyhedralTopology;
 
 class Polyhedron {
 public:
-    Polyhedron(const PolyhedralTopology& topology, double z_bottom,
+    Polyhedron(const PolyhedralTopology& topology,
                const std::vector<R3>& vertices);
     Polyhedron(const Polyhedron&) = delete;
 
@@ -44,19 +44,14 @@ public:
     double volume() const;
     double radius() const;
 
-    std::vector<R3> vertices() const; //! needed for topZ, bottomZ computation
-    complex_t formfactor_at_center(const C3& q) const;
-    complex_t formfactor_at_bottom(const C3& q) const;
+    complex_t formfactor(const C3& q) const;
 
 private:
-
-    double m_z_bottom;
     bool m_sym_Ci; //!< if true, then faces obtainable by inversion are not provided
 
     std::vector<PolyhedralFace> m_faces;
     double m_radius;
     double m_volume;
-    std::vector<R3> m_vertices; //! for topZ, bottomZ computation only
 };
 
 } // namespace ff
