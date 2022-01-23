@@ -1,5 +1,5 @@
 set(demos
-    tetrahedron
+    octahedron
     )
 
 foreach(app ${demos})
