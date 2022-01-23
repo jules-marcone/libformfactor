@@ -11,7 +11,7 @@ target_include_directories(${lib}
     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
     $<INSTALL_INTERFACE:include>
     )
-target_include_directories(${lib} PRIVATE ${LibHeinz_INCLUDE_DIR})
+target_include_directories(${lib} PUBLIC ${LibHeinz_INCLUDE_DIR})
 
 set_target_properties(
     ${lib} PROPERTIES
