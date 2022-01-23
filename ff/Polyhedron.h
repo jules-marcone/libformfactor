@@ -19,13 +19,12 @@
 #include <memory>
 #include <vector>
 
+#include <ff/PolyhedralComponents.h>
+#include <ff/PolyhedralTopology.h>
 #include <heinz/Complex.h>
 #include <heinz/Vectors3D.h>
 
 namespace ff {
-
-class PolyhedralFace;
-class PolyhedralTopology;
 
 //! A polyhedron, implementation class for use in IFormFactorPolyhedron
 

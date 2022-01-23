@@ -17,8 +17,6 @@
 //! "Numerically stable form factor of any polygon and polyhedron"
 
 #include "ff/Polyhedron.h"
-#include "ff/PolyhedralComponents.h"
-#include "ff/PolyhedralTopology.h"
 #include <stdexcept>
 
 #ifdef ALGORITHM_DIAGNOSTIC_LEVEL2

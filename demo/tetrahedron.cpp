@@ -1,7 +1,8 @@
 #include <ff/PolyhedralTopology.h>
-#include <ff/PolyhedralComponents.h>
+//#include <ff/PolyhedralComponents.h>
 #include <ff/Polyhedron.h>
 #include <iostream>
+
 
 const ff::PolyhedralTopology tetrahedron_topology = {
     {{{2, 1, 0}, false}, {{0, 1, 3}, false}, {{1, 2, 3}, false}, {{2, 0, 3}, false}}, false};
