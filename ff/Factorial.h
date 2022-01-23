@@ -12,11 +12,6 @@
 //
 //  ************************************************************************************************
 
-#ifdef SWIG
-#error no need to expose this header to Swig
-#endif
-
-#ifndef USER_API
 #ifndef FORMFACTOR_FF_FACTORIAL_H
 #define FORMFACTOR_FF_FACTORIAL_H
 
@@ -56,4 +51,3 @@ constexpr std::array<double, N> generateReciprocalFactorialArray()
 } // namespace ff_aux
 
 #endif // FORMFACTOR_FF_FACTORIAL_H
-#endif // USER_API

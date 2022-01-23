@@ -12,11 +12,6 @@
 //
 //  ************************************************************************************************
 
-#ifdef SWIG
-#error no need to expose this header to Swig
-#endif
-
-#ifndef USER_API
 #ifndef FORMFACTOR_FF_POLYHEDRALCOMPONENTS_H
 #define FORMFACTOR_FF_POLYHEDRALCOMPONENTS_H
 
@@ -100,4 +95,3 @@ private:
 } // namespace ff
 
 #endif // FORMFACTOR_FF_POLYHEDRALCOMPONENTS_H
-#endif // USER_API
