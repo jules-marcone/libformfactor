@@ -43,6 +43,7 @@ include(CTest)
 
 add_subdirectory(ff)
 add_subdirectory(test)
+add_subdirectory(demo)
 
 ## CPack settings.
 
