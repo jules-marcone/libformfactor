@@ -5,7 +5,7 @@
 //! @file      demo/octahedron.cpp
 //! @brief     Computes the formfactor of a platonic octahedron
 //!
-//! @homepage  http://www.bornagainproject.org
+//! @homepage  https://jugit.fz-juelich.de/mlz/libformfactor
 //! @license   GNU General Public License v3 or higher (see LICENSE)
 //! @copyright Forschungszentrum Jülich GmbH 2022
 //! @author    Joachim Wuttke, Scientific Computing Group at MLZ (see CITATION)

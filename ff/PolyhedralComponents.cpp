@@ -5,9 +5,9 @@
 //! @file      ff/PolyhedralComponents.cpp
 //! @brief     Implements classes PolyhedralEdge, PolyhedralFace
 //!
-//! @homepage  http://www.bornagainproject.org
+//! @homepage  https://jugit.fz-juelich.de/mlz/libformfactor
 //! @license   GNU General Public License v3 or higher (see LICENSE)
-//! @copyright Forschungszentrum Jülich GmbH 2021
+//! @copyright Forschungszentrum Jülich GmbH 2022
 //! @author    Joachim Wuttke, Scientific Computing Group at MLZ (see CITATION)
 //
 //  ************************************************************************************************

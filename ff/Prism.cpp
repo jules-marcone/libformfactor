@@ -5,9 +5,9 @@
 //! @file      ff/Prism.cpp
 //! @brief     Implements class Prism.
 //!
-//! @homepage  http://www.bornagainproject.org
+//! @homepage  https://jugit.fz-juelich.de/mlz/libformfactor
 //! @license   GNU General Public License v3 or higher (see COPYING)
-//! @copyright Forschungszentrum Jülich GmbH 2021
+//! @copyright Forschungszentrum Jülich GmbH 2022
 //! @authors   Scientific Computing Group at MLZ (see CITATION, AUTHORS)
 //
 //  ************************************************************************************************
