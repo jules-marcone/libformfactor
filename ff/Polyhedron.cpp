@@ -32,8 +32,7 @@ const int n_limit_series = 20;
 } // namespace
 
 
-ff::Polyhedron::Polyhedron(const PolyhedralTopology& topology,
-                           const std::vector<R3>& vertices)
+ff::Polyhedron::Polyhedron(const PolyhedralTopology& topology, const std::vector<R3>& vertices)
     : m_sym_Ci(topology.symmetry_Ci)
 {
     double diameter = 0;

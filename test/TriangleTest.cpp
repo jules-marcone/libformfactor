@@ -1,9 +1,9 @@
-#include "ff/PolyhedralComponents.h"
 #include "catch.hpp"
+#include "ff/PolyhedralComponents.h"
 #include <cstdio>
 
 #undef M_PI_2
-#define M_PI_2 1.57079632679489661923     /* pi/2 */
+#define M_PI_2 1.57079632679489661923 /* pi/2 */
 
 //! Ad-hoc test of triangle form factor.
 //!
@@ -18,7 +18,7 @@ TEST_CASE("FF:Triangle", "")
     const std::vector<R3> V{{-ac, as, 0.}, {-ac, -as, 0.}, {ah, 0., 0.}};
 
     const ff::PolyhedralFace T(V, false);
-    CHECK(std::abs(sqrt(3) / 4-T.area()) < 1e-15);
+    CHECK(std::abs(sqrt(3) / 4 - T.area()) < 1e-15);
 
     int failures = 0;
     const int M = 37;

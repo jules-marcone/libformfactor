@@ -30,8 +30,7 @@ namespace ff {
 
 class Polyhedron {
 public:
-    Polyhedron(const PolyhedralTopology& topology,
-               const std::vector<R3>& vertices);
+    Polyhedron(const PolyhedralTopology& topology, const std::vector<R3>& vertices);
     Polyhedron(const Polyhedron&) = delete;
 
     void assert_platonic() const;

@@ -17,11 +17,12 @@
 
 //! Prints list t vs |F(q(t))| for a logarithmic range of t values
 
-int main() {
+int main()
+{
     ff::platonic::Octahedron octahedron(1.);
-    for (double t=0.2; t<200;  t *= 1.002) {
+    for (double t = 0.2; t < 200; t *= 1.002) {
         // choose q perpendicular to two opposite faces
-        C3 q(0, sqrt(2./3)*t, sqrt(1./3)*t);
+        C3 q(0, sqrt(2. / 3) * t, sqrt(1. / 3) * t);
         std::cout << t << " " << std::abs(octahedron.formfactor(q)) << std::endl;
     }
 }
