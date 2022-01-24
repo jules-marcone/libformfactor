@@ -30,4 +30,18 @@ class Octahedron : public ff::Polyhedron {
     Octahedron(const double edge);
 };
 
+class Dodecahedron : public ff::Polyhedron {
+ public:
+    static const ff::PolyhedralTopology topology;
+    static std::vector<R3> vertices(const double edge);
+    Dodecahedron(const double edge);
+};
+
+class Icosahedron : public ff::Polyhedron {
+ public:
+    static const ff::PolyhedralTopology topology;
+    static std::vector<R3> vertices(const double edge);
+    Icosahedron(const double edge);
+};
+
 } // namespace ff::platonic
