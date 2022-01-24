@@ -2,7 +2,8 @@ set(lib formfactor)
 set(${lib}_LIBRARY ${lib} PARENT_SCOPE)
 
 file(GLOB src_files *.cpp)
-set(api_files Polyhedron.h Prism.h PolyhedralTopology.h PolyhedralComponents.h)
+set(api_files Polyhedron.h Prism.h PolyhedralTopology.h PolyhedralComponents.h
+    Platonic.h)
 
 add_library(${lib} ${src_files})
 
