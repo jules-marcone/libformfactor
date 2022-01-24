@@ -1,13 +1,13 @@
 //  ************************************************************************************************
 //
-//  BornAgain: simulate and fit reflection and scattering
+//  libformfactor: efficient and accurate computation of scattering form factors
 //
 //! @file      ff/Prism.cpp
 //! @brief     Implements class Prism.
 //!
 //! @homepage  http://www.bornagainproject.org
 //! @license   GNU General Public License v3 or higher (see COPYING)
-//! @copyright Forschungszentrum Jülich GmbH 2018
+//! @copyright Forschungszentrum Jülich GmbH 2021
 //! @authors   Scientific Computing Group at MLZ (see CITATION, AUTHORS)
 //
 //  ************************************************************************************************
@@ -17,7 +17,7 @@
 //! "Form factor (Fourier shape transform) of polygon and polyhedron."
 
 #include "ff/Prism.h"
-#include <stdexcept> // need overlooked by g++ 5.4
+#include <stdexcept>
 
 namespace {
 
