@@ -20,8 +20,11 @@ namespace ff::platonic {
 //  class Tetrahedron
 //  ************************************************************************************************
 
-const ff::PolyhedralTopology Tetrahedron::topology = {
-    {{{2, 1, 0}, false}, {{0, 1, 3}, false}, {{1, 2, 3}, false}, {{2, 0, 3}, false}}, false};
+ff::PolyhedralTopology Tetrahedron::topology()
+{
+    return
+        {{{{2, 1, 0}, false}, {{0, 1, 3}, false}, {{1, 2, 3}, false}, {{2, 0, 3}, false}}, false};
+}
 
 std::vector<R3> Tetrahedron::vertices(const double edge)
 {
@@ -40,14 +43,16 @@ std::vector<R3> Tetrahedron::vertices(const double edge)
 }
 
 Tetrahedron::Tetrahedron(const double edge)
-    : ff::Polyhedron(topology, vertices(edge))
+    : ff::Polyhedron(topology(), vertices(edge))
 {}
 
 //  ************************************************************************************************
 //  class Octahedron
 //  ************************************************************************************************
 
-const ff::PolyhedralTopology Octahedron::topology = {
+ff::PolyhedralTopology Octahedron::topology()
+{
+    return {
     {{{0, 2, 1}, false},
      {{0, 3, 2}, false},
      {{0, 4, 3}, false},
@@ -57,6 +62,7 @@ const ff::PolyhedralTopology Octahedron::topology = {
      {{4, 1, 5}, false},
      {{3, 4, 5}, false}},
     true};
+}
 
 std::vector<R3> Octahedron::vertices(const double edge)
 {
@@ -73,31 +79,33 @@ std::vector<R3> Octahedron::vertices(const double edge)
 }
 
 Octahedron::Octahedron(const double edge)
-    : ff::Polyhedron(topology, vertices(edge))
+    : ff::Polyhedron(topology(), vertices(edge))
 {}
 
 //  ************************************************************************************************
 //  class Dodecahedron
 //  ************************************************************************************************
 
-const ff::PolyhedralTopology Dodecahedron::topology = {
-    {// bottom:
-        {{0, 4, 3, 2, 1}, false},
-        // lower ring:
-        {{0, 5, 12, 9, 4}, false},
-        {{4, 9, 11, 8, 3}, false},
-        {{3, 8, 10, 7, 2}, false},
-        {{2, 7, 14, 6, 1}, false},
-        {{1, 6, 13, 5, 0}, false},
-        // upper ring:
-        {{8, 11, 16, 15, 10}, false},
-        {{9, 12, 17, 16, 11}, false},
-        {{5, 13, 18, 17, 12}, false},
-        {{6, 14, 19, 18, 13}, false},
-        {{7, 10, 15, 19, 14}, false},
-        // top:
-        {{15, 16, 17, 18, 19}, false}},
-    true};
+ff::PolyhedralTopology Dodecahedron::topology()
+{
+    return {{// bottom:
+            {{0, 4, 3, 2, 1}, false},
+            // lower ring:
+            {{0, 5, 12, 9, 4}, false},
+            {{4, 9, 11, 8, 3}, false},
+            {{3, 8, 10, 7, 2}, false},
+            {{2, 7, 14, 6, 1}, false},
+            {{1, 6, 13, 5, 0}, false},
+            // upper ring:
+            {{8, 11, 16, 15, 10}, false},
+            {{9, 12, 17, 16, 11}, false},
+            {{5, 13, 18, 17, 12}, false},
+            {{6, 14, 19, 18, 13}, false},
+            {{7, 10, 15, 19, 14}, false},
+            // top:
+            {{15, 16, 17, 18, 19}, false}},
+        true};
+}
 
 std::vector<R3> Dodecahedron::vertices(const double a)
 {
@@ -125,14 +133,16 @@ std::vector<R3> Dodecahedron::vertices(const double a)
 }
 
 Dodecahedron::Dodecahedron(const double edge)
-    : ff::Polyhedron(topology, vertices(edge))
+    : ff::Polyhedron(topology(), vertices(edge))
 {}
 
 //  ************************************************************************************************
 //  class Icosahedron
 //  ************************************************************************************************
 
-const ff::PolyhedralTopology Icosahedron::topology = {
+ff::PolyhedralTopology Icosahedron::topology()
+{
+    return {
     {// bottom:
         {{0, 2, 1}, false},
         // 1st row:
@@ -160,6 +170,7 @@ const ff::PolyhedralTopology Icosahedron::topology = {
         // top:
         {{9, 11, 10}, false}},
     true};
+}
 
 std::vector<R3> Icosahedron::vertices(const double a)
 {
@@ -179,7 +190,7 @@ std::vector<R3> Icosahedron::vertices(const double a)
 }
 
 Icosahedron::Icosahedron(const double edge)
-    : ff::Polyhedron(topology, vertices(edge))
+    : ff::Polyhedron(topology(), vertices(edge))
 {}
 
 } // namespace ff::platonic
