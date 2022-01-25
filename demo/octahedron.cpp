@@ -15,7 +15,7 @@
 #include <ff/Platonic.h>
 #include <iostream>
 
-constexpr double twopi = std::atan(1)*8;
+constexpr double twopi = 6.28318530718;
 
 //! Prints list t vs |F(q(t))| for a logarithmic range of t values
 
