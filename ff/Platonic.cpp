@@ -94,15 +94,15 @@ ff::PolyhedralTopology Dodecahedron::topology()
 
 std::vector<R3> Dodecahedron::vertices(const double a)
 {
-    const double r1 = 0.2628655560595668 * a;
-    const double r2 = 0.42532540417602 * a;
+    const double r1 = 0.2628655560595668 * a; // sqrt((5-sqrt(5)/40)
+    const double r2 = 0.42532540417602 * a; // r1*phi
     const double r3 = 0.5 * a;
-    const double r4 = 0.6881909602355868 * a;
-    const double r5 = 0.8090169943749473 * a;
-    const double r6 = 0.8506508083520399 * a;
-    const double r7 = 1.113516364411607 * a;
-    const double r8 = 1.309016994374947 * a;
-    const double r9 = 1.376381920471174 * a;
+    const double r4 = 0.6881909602355868 * a; // r2*phi
+    const double r5 = 0.8090169943749473 * a; // r3*phi
+    const double r6 = 0.8506508083520399 * a; // r1 * 2 * phi
+    const double r7 = 1.113516364411607 * a; // r4*phi
+    const double r8 = 1.309016994374947 * a; // r5*phi
+    const double r9 = 1.376381920471174 * a; // r6*phi
     return {{r6, 0, -r7},
             {r1, r5, -r7},
             {-r4, r3, -r7},
