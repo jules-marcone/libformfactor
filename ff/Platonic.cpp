@@ -59,10 +59,9 @@ ff::PolyhedralTopology Octahedron::topology()
 
 std::vector<R3> Octahedron::vertices(const double edge)
 {
-    const double a = edge / 2;
-    const double h = a * sqrt(2);
+    const double h = edge / sqrt(2);
 
-    return {{0, 0, -h}, {-a, -a, 0}, {a, -a, 0}, {a, a, 0}, {-a, a, 0}, {0, 0, h}};
+    return {{0, 0, -h}, {h, 0, 0}, {0, h, 0}, {-h, 0, 0}, {0, -h, 0}, {0, 0, h}};
 }
 
 Octahedron::Octahedron(const double edge) : ff::Polyhedron(topology(), vertices(edge)) {}
