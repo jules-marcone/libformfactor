@@ -164,14 +164,14 @@ ff::PolyhedralTopology Icosahedron::topology()
 
 std::vector<R3> Icosahedron::vertices(const double a)
 {
-    const double s1 = 0.1784110448865449 * a;
-    const double s2 = 0.288675134594813 * a;
-    const double s3 = 0.467086179481358 * a;
+    const double s1 = 0.1784110448865449 * a; // 1/sqrt(6)/sqrt(3+sqrt(5))
+    const double s2 = 0.288675134594813 * a; // s1 * phi
+    const double s3 = 0.467086179481358 * a; // s2 * phi
     const double s4 = 0.5 * a;
-    const double s5 = 0.5773502691896258 * a;
-    const double s6 = 0.7557613140761708 * a;
-    const double s7 = 0.8090169943749473 * a;
-    const double s8 = 0.9341723589627158 * a;
+    const double s5 = 0.5773502691896258 * a; // 2 * s2
+    const double s6 = 0.7557613140761708 * a; // s3 * phi
+    const double s7 = 0.8090169943749473 * a; // phi/2
+    const double s8 = 0.9341723589627158 * a; // s5 * phi
     return {{s5, 0, -s6},
             {-s2, s4, -s6},
             {-s2, -s4, -s6},
