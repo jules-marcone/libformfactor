@@ -18,7 +18,7 @@ set_target_properties(
     ${lib} PROPERTIES
     OUTPUT_NAME ${lib}
     VERSION ${formfactor_VERSION}
-    SOVERSION ${formfactor_VERSION_MAJOR})
+    SOVERSION ${formfactor_VERSION})
 
 install(
     TARGETS ${lib}
