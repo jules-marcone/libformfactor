@@ -14,3 +14,14 @@ make
 ctest
 make install
 ```
+
+Usage is demonstrated in directory demo/. To build and run example
+code that prints q vs |F(q)| for some sequences of q vectors, do
+```
+cd demo
+mkdir build
+cd build
+cmake ..
+make
+octahedron
+```
