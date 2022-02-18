@@ -1,4 +1,4 @@
 @PACKAGE_INIT@
 
 set(formfactor_INCLUDE_DIR "@CMAKE_INSTALL_PREFIX@/include")
-include(${CMAKE_CURRENT_LIST_DIR}/formfactorTargets.cmake)
+include("${CMAKE_CURRENT_LIST_DIR}/formfactorTargets.cmake")

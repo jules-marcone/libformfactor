@@ -9,10 +9,10 @@ add_library(${lib} ${src_files})
 
 target_include_directories(${lib}
     PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
-    $<INSTALL_INTERFACE:include>
+    "$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>"
+    "$<INSTALL_INTERFACE:include>"
     )
-target_include_directories(${lib} PUBLIC ${LibHeinz_INCLUDE_DIR})
+target_include_directories(${lib} PUBLIC "${LibHeinz_INCLUDE_DIR}")
 
 set_target_properties(
     ${lib} PROPERTIES

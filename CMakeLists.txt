@@ -29,7 +29,7 @@ if(WERROR)
     add_compile_options(-Werror)
 endif()
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 ## Dependences.
 
@@ -62,7 +62,7 @@ install(EXPORT formfactorTargets
 ## Config files.
 
 include(CMakePackageConfigHelpers)
-configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
+configure_package_config_file("${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/formfactorConfig.cmake"
     INSTALL_DESTINATION cmake
     NO_SET_AND_CHECK_MACRO
@@ -74,11 +74,11 @@ write_basic_package_version_file(
     COMPATIBILITY AnyNewerVersion    )
 
 install(FILES
-    ${PROJECT_BINARY_DIR}/formfactorConfig.cmake
-    ${PROJECT_BINARY_DIR}/formfactorConfigVersion.cmake
+    "${PROJECT_BINARY_DIR}/formfactorConfig.cmake"
+    "${PROJECT_BINARY_DIR}/formfactorConfigVersion.cmake"
     DESTINATION cmake)
 
 ## Generate export targets.
 
 export(EXPORT formfactorTargets
-  FILE ${CMAKE_CURRENT_BINARY_DIR}/formfactorTargets.cmake)
+  FILE "${CMAKE_CURRENT_BINARY_DIR}/formfactorTargets.cmake")

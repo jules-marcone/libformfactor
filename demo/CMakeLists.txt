@@ -31,6 +31,6 @@ set(demos
 
 ## Configure executable
 foreach(app ${demos})
-    add_executable(${app} ${app}.cpp)
+    add_executable(${app} "${app}.cpp")
     target_link_libraries(${app} formfactor)
 endforeach()

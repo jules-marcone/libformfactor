@@ -13,3 +13,5 @@ build/
 cover/
 debug/
 tidy/
+demo/build
+demo/debug
