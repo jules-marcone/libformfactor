@@ -22,7 +22,10 @@ namespace ff::platonic {
 
 ff::PolyhedralTopology Tetrahedron::topology()
 {
-    return {{{{2, 1, 0}, false}, {{0, 1, 3}, false}, {{1, 2, 3}, false}, {{2, 0, 3}, false}},
+    return {{{{2, 1, 0}, false},
+             {{0, 1, 3}, false},
+             {{1, 2, 3}, false},
+             {{2, 0, 3}, false}},
             false};
 }
 
@@ -57,11 +60,21 @@ ff::PolyhedralTopology Octahedron::topology()
             true};
 }
 
+/// diagonal position: axes on vertices
+//std::vector<R3> Octahedron::vertices(const double edge)
+//{
+//    const double h = edge / sqrt(2);
+
+//    return {{0, 0, -h}, {h, 0, 0}, {0, h, 0}, {-h, 0, 0}, {0, -h, 0}, {0, 0, h}};
+//}
+
+/// rotated position: x and y axes are perpendicular ro the edges
 std::vector<R3> Octahedron::vertices(const double edge)
 {
     const double h = edge / sqrt(2);
+    const double a = edge / 2;
 
-    return {{0, 0, -h}, {h, 0, 0}, {0, h, 0}, {-h, 0, 0}, {0, -h, 0}, {0, 0, h}};
+    return {{0, 0, -h}, {a, -a, 0}, {a, a, 0}, {-a, a, 0}, {-a, -a, 0}, {0, 0, h}};
 }
 
 Octahedron::Octahedron(const double edge) : ff::Polyhedron(topology(), vertices(edge)) {}

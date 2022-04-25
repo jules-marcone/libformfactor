@@ -2,6 +2,7 @@
 *.bak
 *.patch
 *.tmp
+*.user
 
 # doxygen generated
 dox/
