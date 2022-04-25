@@ -2,6 +2,7 @@
 *.bak
 *.patch
 *.tmp
+*.user
 
 # doxygen generated
 dox/
@@ -15,3 +16,4 @@ debug/
 tidy/
 demo/build
 demo/debug
+

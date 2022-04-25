@@ -57,11 +57,21 @@ ff::PolyhedralTopology Octahedron::topology()
             true};
 }
 
+/// diagonal position: axes on vertices
+// std::vector<R3> Octahedron::vertices(const double edge)
+//{
+//     const double h = edge / sqrt(2);
+
+//    return {{0, 0, -h}, {h, 0, 0}, {0, h, 0}, {-h, 0, 0}, {0, -h, 0}, {0, 0, h}};
+//}
+
+/// rotated position: x and y axes are perpendicular to the edges
 std::vector<R3> Octahedron::vertices(const double edge)
 {
     const double h = edge / sqrt(2);
+    const double a = edge / 2;
 
-    return {{0, 0, -h}, {h, 0, 0}, {0, h, 0}, {-h, 0, 0}, {0, -h, 0}, {0, 0, h}};
+    return {{0, 0, -h}, {a, -a, 0}, {a, a, 0}, {-a, a, 0}, {-a, -a, 0}, {0, 0, h}};
 }
 
 Octahedron::Octahedron(const double edge) : ff::Polyhedron(topology(), vertices(edge)) {}
@@ -94,34 +104,18 @@ ff::PolyhedralTopology Dodecahedron::topology()
 std::vector<R3> Dodecahedron::vertices(const double a)
 {
     const double r1 = 0.2628655560595668 * a; // sqrt((5-sqrt(5)/40)
-    const double r2 = 0.42532540417602 * a; // r1*phi
+    const double r2 = 0.42532540417602 * a;   // r1*phi
     const double r3 = 0.5 * a;
     const double r4 = 0.6881909602355868 * a; // r2*phi
     const double r5 = 0.8090169943749473 * a; // r3*phi
     const double r6 = 0.8506508083520399 * a; // r1 * 2 * phi
-    const double r7 = 1.113516364411607 * a; // r4*phi
-    const double r8 = 1.309016994374947 * a; // r5*phi
-    const double r9 = 1.376381920471174 * a; // r6*phi
-    return {{r6, 0, -r7},
-            {r1, r5, -r7},
-            {-r4, r3, -r7},
-            {-r4, -r3, -r7},
-            {r1, -r5, -r7},
-            {r9, 0, -r1},
-            {r2, r8, -r1},
-            {-r7, r5, -r1},
-            {-r7, -r5, -r1},
-            {r2, -r8, -r1},
-            {-r9, 0, r1},
-            {-r2, -r8, r1},
-            {r7, -r5, r1},
-            {r7, r5, r1},
-            {-r2, r8, r1},
-            {-r6, 0, r7},
-            {-r1, -r5, r7},
-            {r4, -r3, r7},
-            {r4, r3, r7},
-            {-r1, r5, r7}};
+    const double r7 = 1.113516364411607 * a;  // r4*phi
+    const double r8 = 1.309016994374947 * a;  // r5*phi
+    const double r9 = 1.376381920471174 * a;  // r6*phi
+    return {{r6, 0, -r7}, {r1, r5, -r7},  {-r4, r3, -r7}, {-r4, -r3, -r7}, {r1, -r5, -r7},
+            {r9, 0, -r1}, {r2, r8, -r1},  {-r7, r5, -r1}, {-r7, -r5, -r1}, {r2, -r8, -r1},
+            {-r9, 0, r1}, {-r2, -r8, r1}, {r7, -r5, r1},  {r7, r5, r1},    {-r2, r8, r1},
+            {-r6, 0, r7}, {-r1, -r5, r7}, {r4, -r3, r7},  {r4, r3, r7},    {-r1, r5, r7}};
 }
 
 Dodecahedron::Dodecahedron(const double edge) : ff::Polyhedron(topology(), vertices(edge)) {}
@@ -164,25 +158,16 @@ ff::PolyhedralTopology Icosahedron::topology()
 std::vector<R3> Icosahedron::vertices(const double a)
 {
     const double s1 = 0.1784110448865449 * a; // 1/sqrt(6)/sqrt(3+sqrt(5))
-    const double s2 = 0.288675134594813 * a; // s1 * phi
-    const double s3 = 0.467086179481358 * a; // s2 * phi
+    const double s2 = 0.288675134594813 * a;  // s1 * phi
+    const double s3 = 0.467086179481358 * a;  // s2 * phi
     const double s4 = 0.5 * a;
     const double s5 = 0.5773502691896258 * a; // 2 * s2
     const double s6 = 0.7557613140761708 * a; // s3 * phi
     const double s7 = 0.8090169943749473 * a; // phi/2
     const double s8 = 0.9341723589627158 * a; // s5 * phi
-    return {{s5, 0, -s6},
-            {-s2, s4, -s6},
-            {-s2, -s4, -s6},
-            {-s8, 0, -s1},
-            {s3, s7, -s1},
-            {s3, -s7, -s1},
-            {s8, 0, s1},
-            {-s3, s7, s1},
-            {-s3, -s7, s1},
-            {-s5, 0, s6},
-            {s2, s4, s6},
-            {s2, -s4, s6}};
+    return {{s5, 0, -s6},   {-s2, s4, -s6}, {-s2, -s4, -s6}, {-s8, 0, -s1},
+            {s3, s7, -s1},  {s3, -s7, -s1}, {s8, 0, s1},     {-s3, s7, s1},
+            {-s3, -s7, s1}, {-s5, 0, s6},   {s2, s4, s6},    {s2, -s4, s6}};
 }
 
 Icosahedron::Icosahedron(const double edge) : ff::Polyhedron(topology(), vertices(edge)) {}
