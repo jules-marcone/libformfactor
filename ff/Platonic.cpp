@@ -68,7 +68,7 @@ ff::PolyhedralTopology Octahedron::topology()
 //    return {{0, 0, -h}, {h, 0, 0}, {0, h, 0}, {-h, 0, 0}, {0, -h, 0}, {0, 0, h}};
 //}
 
-/// rotated position: x and y axes are perpendicular ro the edges
+/// rotated position: x and y axes are perpendicular to the edges
 std::vector<R3> Octahedron::vertices(const double edge)
 {
     const double h = edge / sqrt(2);
