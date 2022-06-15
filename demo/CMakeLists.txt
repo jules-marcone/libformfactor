@@ -27,6 +27,12 @@ find_package(formfactor REQUIRED CONFIG)
 ## Source
 set(demos
     octahedron
+    cube
+    deca1
+    tribipy
+    tribifrustum1
+    tribifrustum2
+    tribifrustum3
     )
 
 ## Configure executable
