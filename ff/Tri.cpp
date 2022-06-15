@@ -1,11 +1,9 @@
 //  ************************************************************************************************
 //
-//  BornAgain: simulate and fit reflection and scattering
-//
 //! @file      ff/Tri.cpp
 //! @brief     trigonal shapes class, bipyramids, bifrustum, etc ...
 //!
-//! @homepage  https://jugit.fz-juelich.de/mlz/libformfactor
+//! @homepage  https://github.com/jules-marcone/libformfactor
 //! @license   GNU General Public License v3 or higher (see COPYING)
 //! @copyright Forschungszentrum Jülich GmbH 2022
 //! @authors  Marianne Imperor-Clerc, Jules Marcone June 2022

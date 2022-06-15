@@ -2,10 +2,10 @@
 //
 //  libformfactor: efficient and accurate computation of scattering form factors
 //
-//! @file      demobipy/bipy3.cpp
-//! @brief     regular bipyramid with a triangular base
+//! @file      deca1.cpp
+//! @brief     regular decahedron
 //!
-//! @homepage  https://jugit.fz-juelich.de/mlz/libformfactor
+//! @homepage  https://github.com/jules-marcone/libformfactor
 //! @license   GNU General Public License v3 or higher (see LICENSE)
 //! @copyright Forschungszentrum Jülich GmbH 2022
 //! @author    Marianne Imperor-Clerc May 2022

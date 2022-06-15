@@ -2,13 +2,13 @@
 //
 //  libformfactor: efficient and accurate computation of scattering form factors
 //
-//! @file      demo/octahedron.cpp
-//! @brief     Computes the formfactor of a platonic octahedron
+//! @file      demo/pave.cpp
+//! @brief     Computes the formfactor of a rectangular prism
 //!
-//! @homepage  https://jugit.fz-juelich.de/mlz/libformfactor
+//! @homepage  https://github.com/jules-marcone/libformfactor
 //! @license   GNU General Public License v3 or higher (see LICENSE)
 //! @copyright Forschungszentrum Jülich GmbH 2022
-//! @author    Joachim Wuttke, Scientific Computing Group at MLZ (see CITATION)
+//! @author    Jules Marcone, Jules 2022
 //
 //  ************************************************************************************************
 
