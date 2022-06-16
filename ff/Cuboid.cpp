@@ -27,7 +27,7 @@ ff::PolyhedralTopology Cube::topology()
              {{3, 0, 4, 7}, true},
              {{2, 3, 7, 6}, true},
              {{4, 5, 6, 7}, true}},
-            false};
+            false}; //Yes, cubes are centrosymmetric. But somehow, when writing "true" here, the demo files stop working, so go figure.
 }
 
 std::vector<R3> Cube::vertices(const double edge)

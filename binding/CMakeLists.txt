@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
-project(demo_using_formfactor VERSION 0.1.2 LANGUAGES CXX)
+project(binding_attempt)
 
 ## Compiler settings.
 option(WERROR "Treat warnings as errors" OFF)
@@ -15,7 +15,7 @@ else()
         add_compile_options(-pedantic -Wall)
     endif()
 endif()
-add_compile_options(-O2)
+#add_compile_options(-O2)
 if(WERROR)
     add_compile_options(-Werror)
 endif()
@@ -25,18 +25,17 @@ find_package(LibHeinz REQUIRED CONFIG)
 find_package(formfactor REQUIRED CONFIG)
 
 ## Source
-set(demos
-    octahedron
-    cube
-    deca1
-    tribipy
-    tribifrustum
-    pave
-    pave_model
-    )
+#set(pave)
 
-## Configure executable
-foreach(app ${demos})
-    add_executable(${app} "${app}.cpp")
-    target_link_libraries(${app} formfactor)
-endforeach()
+
+
+find_package(SWIG REQUIRED)
+include(${SWIG_USE_FILE})
+
+find_package(PythonLibs)
+
+include_directories(${PYTHON_INCLUDE_DIRS})
+
+swig_add_library(pavepy LANGUAGE python SOURCES ./pave.i)
+swig_link_libraries(pavepy pave)
+swig_link_libraries(pavepy ${PYTHON_LIBRARIES})
