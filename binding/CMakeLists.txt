@@ -21,6 +21,7 @@ endif()
 find_package(PythonLibs)
 include_directories(${PYTHON_INCLUDE_DIRS})
 link_libraries(${PYTHON_LIBRARIES})
+#link_libraries(${PYTHON_DEBUG_LIBRARIES})
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
 

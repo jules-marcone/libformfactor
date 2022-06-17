@@ -11,7 +11,7 @@
 //  ************************************************************************************************
 
 #include <ff/Cuboid.h>
-#include <binding/pave.h>
+#include <pave.h>
 #include <iostream>
 
 constexpr double twopi = 6.28318530718;

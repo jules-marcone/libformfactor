@@ -2,7 +2,7 @@
 
 %module pavepy
 %{
-#include "./pave.h"
+#include "pave.h"
 %}
 
-%include "./pave.h"
+%include "pave.h"
