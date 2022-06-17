@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 project(binding_attempt)
 
-## Compiler settings.
-option(WERROR "Treat warnings as errors" OFF)
-
 set(CMAKE_CXX_STANDARD 17)
 if(WIN32)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
@@ -15,27 +12,24 @@ else()
         add_compile_options(-pedantic -Wall)
     endif()
 endif()
-#add_compile_options(-O2)
+
 if(WERROR)
     add_compile_options(-Werror)
 endif()
 
-## Dependencies
-find_package(LibHeinz REQUIRED CONFIG)
-find_package(formfactor REQUIRED CONFIG)
 
-## Source
-#set(pave)
+find_package(PythonLibs)
+include_directories(${PYTHON_INCLUDE_DIRS})
+link_libraries(${PYTHON_LIBRARIES})
 
-
+include_directories(${PROJECT_SOURCE_DIR}/src)
 
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 
-find_package(PythonLibs)
+set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR}/python)
+set(SWIG_OUTFILE_DIR ${CMAKE_CURRENT_BINARY_DIR}/cpp)
 
-include_directories(${PYTHON_INCLUDE_DIRS})
+set_property(SOURCE src/pave.i PROPERTY CPLUSPLUS ON)
 
-swig_add_library(pavepy LANGUAGE python SOURCES ./pave.i)
-swig_link_libraries(pavepy pave)
-swig_link_libraries(pavepy ${PYTHON_LIBRARIES})
+swig_add_library(pave LANGUAGE python SOURCES src/pave.i)
