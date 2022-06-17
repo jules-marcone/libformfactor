@@ -1,6 +1,6 @@
 /* File : pave.i*/
 
-%module pavepy
+%module pave
 %{
 #include "pave.h"
 %}
