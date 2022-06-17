@@ -1,3 +1,5 @@
+#include <ff/Cuboid.h>
+
 double Iqabc(double qa, double qb, double qc,
     double sld,
     double solvent_sld,
