@@ -25,17 +25,20 @@ link_libraries(${PYTHON_LIBRARIES})
 
 include_directories(${PYTHON_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR})
 
-find_package(LibHeinz REQUIRED CONFIG)
-find_package(formfactor REQUIRED CONFIG)
+#find_package(LibHeinz REQUIRED CONFIG)
+#find_package(formfactor REQUIRED CONFIG)
+#include_directories(${LibHeinz_INCLUDE_DIRS} ${formfactor_INCLUDE_DIRS})
+#target_include_directories(pave PUBLIC ${CMAKE_SOURCE_DIR}/..)
+
 
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 
-set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR}/python)
+set(CMAKE_SWIG_OUTDIR ${CMAKE_CURRENT_BINARY_DIR}/Release)
 set(SWIG_OUTFILE_DIR ${CMAKE_CURRENT_BINARY_DIR}/cpp)
 
 set_property(SOURCE pave.i PROPERTY CPLUSPLUS ON)
 
 swig_add_library(pave TYPE SHARED LANGUAGE python SOURCES pave.i pave.cpp)
 
-swig_link_libraries(pave ${PYTHON_LIBRARIES})
+#swig_link_libraries(pave ${PYTHON_LIBRARIES})

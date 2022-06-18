@@ -10,12 +10,12 @@
 //
 //  ************************************************************************************************
 
-#include <ff/Cuboid.h>
+//#include <ff/Cuboid.h>
 #include <pave.h>
 #include <iostream>
 
 constexpr double twopi = 6.28318530718;
-
+/*
 //! Prints list t vs |F(q(t))| for a logarithmic range of t values
 double Iqabc(double qa, double qb, double qc,
     double sld,
@@ -35,6 +35,8 @@ double Iqabc(double qa, double qb, double qc,
 
     // Convert from [1e-12 A-1] to [cm-1]
     return 1.0e-4 * (s * AP)*(s * AP);
+}*/
+
+double square(double x){
+    return x*x;
 }
-
-
